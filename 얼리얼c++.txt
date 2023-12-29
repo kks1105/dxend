@@ -1,0 +1,3947 @@
+0visualstudio 2019  https://github.com/users/simeddk/projects/3여기 todo에올리면됨 
+
+온라인네트워크관련자료
+https://unrealengine.tistory.com/44
+https://m.blog.naver.com/wonjong010/221963972139
+온라인으로만드려면 모든 공유할무언가에는 리플리케이트를걸어야통신됨
+
+GameModBase(멀티하려면이걸로)
+->postlogin:맵에사람들어올때마다뜸
+->PreLogin:???
+->logout:사람이나갈때마다뜸
+Gamemode(싱글용모드)
+에셋이동할때컨텐츠내에서이동해야 경로같은것도자동으로해줌
+Retriggerable Delay:변동없무조건제시간을기다림 일반딜레이는 틱에서 틱주기마다 저장해서변동됨
+RHI:얼리얼에서 DX다루는코드
+스마트포인터
+포인터쓸때다른함수에서하나딜리트하면 다른참조했던애들이널포인트가나와서터져버림 스마트포인터쓰면 해결
+유니크:변수하나에만설정가능
+쉐어드:내부에 카운트를만들어 참조되면+ 하고 0이됬을때 지움 지우는게Delete쓰지않고딴거씀
+위크:쉐어드쓸때 서로다른함수가 참조되면 0이안되서 지워지지않을때가있는데 변수가참조되있으면 카운트를증가시키지않는 방법을써서 참조되도해제가능함
+위젯대신빌보드쓰고 머티리얼띄울때도있음
+bUseSeamlessTravel = true;//맵에서맵을넘어갈때 지웟다넘어가는애들을 지우지고리스폰하지않고 그대로데리고옴 예)플레이어스테이트,컨트롤러 장점:로딩이빠르게(오픈월드)느껴짐 단점:게임모드의포스트로그인(입장시실행되는거)가실행이안됨
+OnNetworkFailure네트워크접속성공여부알수있는거 게임엔진에있음 오버라이드로사용
+c++프로젝트
+위젯하고비헤이비어트리 그냥 블프로만들기
+gamestate 게임당1개
+playerstate 플레이어당1개
+Hud  
+
+TOptional: int같이 포인트타입nullptr을못받는애들의 기본값을 nullptr(즉값못받음) 로 설정?(값이들어왔는지않들어왔는지판단가능)가능 사용법예):TOptional<uint32> SelectedRowIndex; 이름<타입> 변수명;
+피보나치알고리즘 행렬로풀면됨
+
+컨스트럭트 월드올릴때하고 드래그로끌을때도호출됨
+
+북마크사용법 뷰->북마크 ->원하는줄에서 컨트롤+KK 누르면 바로올수있음
+
+참조를이용해틀짜기
+한개함수혹은변수   -> 읽기용레퍼런스변수(쓰기하는순간망할수있음)
+	    	 ->변경하는레퍼런스변수혹은함수(읽기용을이용)
+이용하여 동기화하여 코드만들기가능
+
+20230608
+필수 content config source uproject
+얼리얼에디터!
+편집->에디터개인설정->소스코드 ->visulstudio 자기쓰는버젼 (2019)
+C++클래스 에보면 게임모드베이스라는게있음 탐색기에서보면 어떤클래스는보이고 어떤건보임 그리고더블클릭하면 
+비쥬얼스튜디오열림
+프로젝트설정->맵엔모드->
+에디터껏다키면안될시파일에프로젝트새로고침
+
+비쥬얼스튜디오! 
+한글버젼쓰면 디버그에서 뛟뿹꿥나옴
+앱에서 비쥬얼스튜디오인스톨러->수정-> C++사용한게임개발(포함되잇어야됨)-> 언어에서영어버젼설치 ->
+도구->옵션->환경->국가별언어설정->영어
+컨트롤 ` 헤더와cpp왔다갔다하기 툴->키보드->토글헤더찾아서 체크하면됨
+부모로엑터를상속받는애들은 전부접두사로 A가붙음 클래스만들때A안붙이면컴파일안됨
+에디터에서만상호작용하는애들은 대부분F붙음
+UClass와 GeneraTED_BODY()(클래스를단위로끊어서구분할수있게해줌)가있고 클래스에 A접두사가붙어야 에디터에서읽을수있음
+빌드할때 숄루션빌드하면 얼리얼기본 까지 다빌드해서개오래걸림 얼리얼만든클래스만빌드하면됨 그래도오래걸림
+빌드할때 얼리얼파일은 c드라이버가 용량이10퍼미만이면 컴파일실패가뜸  
+버퍼와스트림의차이 버퍼는다넘어와야읽을수있고 스트림은넘어오는대로넘어온만큼읽을수있음
+dx11
+코드에따라 정점보냄->정점찍기->텐셀레이션(멀리있는거대충가까이있는거자세이->정점관계에따라다시 cpp로보냄->그냥할수있는건그림
+
+익스텐션->매니져인스텍션->온라인->언리얼메크로제네레이트 설치  만들기:알트+w 만든거고치기:알트+e
+	UPROPERTY(EditAnywhere)수정됭 에디트어디서나보임
+		int NumA = 10;
+	UPROPERTY(EditDefaultsOnly) 에디트에서만
+		int NumB = 20;
+
+	UPROPERTY(EditInstanceOnly)인스턴스에서만
+		int NumC = 30;
+
+	UPROPERTY(VisibleAnywhere)수정안됨
+		float NumX;
+	UPROPERTY(VisibleDefaultsOnly)
+		float NumY;
+	UPROPERTY(VisibleInstanceOnly)
+		float NumZ;
+UPROPERTY(BlueprintReadOnly, VisibleAnywhere) 블프에서 get만가능 
+
+UPROPERTY:블프에서멤버변수가보일수있게하려면써야됨
+20230609
+생성자에서만든코드는 빌드하자마자 에디터에반영됨
+터져서못들어가면 uproject파일에우클릭하고 generatevisualstudio누르면 만들어줌 고치고빌드후들어가면됨
+generated.h"헤더보다 밑에다른헤더가있으면 빌드가안됨 인클루드할때는무조건위로올려야함
+ConstructorHelpers:: 에디터에서 타입있는걸찾아줌
+에셋을C++로가져오기하다가멈춤
+
+
+20230612
+CreateDefaultSubobject<UStaticMeshComponent>("Mesh"); 메쉬생성
+
+메쉬만드는것
+UCLASS()
+class U04_PRATICE_API ACStaticMesh_Sphere : public ACStaticMesh
+{
+	GENERATED_BODY()
+
+public:
+	ACStaticMesh_Sphere();
+	
+};
+
+ACStaticMesh_Sphere::ACStaticMesh_Sphere()
+{
+	ConstructorHelpers::FObjectFinder<UStaticMesh> meshAsset(TEXT("StaticMesh'/Game/StaticMeshes/SM_Sphere.SM_Sphere'"));
+
+	if (meshAsset.Succeeded())
+		Mesh->SetStaticMesh(meshAsset.Object);
+
+}
+스폰하는것
+GetWorld(); 내가플레이중인 월드가져오는함수
+
+UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+		UClass* ClassRef;       모든클래스
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+		TSubclassOf<class ACStaticMesh> MeshClass; ACstaticmesh상속받은애들만
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CSpawner.generated.h"
+
+UCLASS()
+class U04_PRATICE_API ACSpawner : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+
+	ACSpawner();
+
+protected:
+
+	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+		UClass* ClassRef;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+		TSubclassOf<class ACStaticMesh> MeshClass;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<class ACStaticMesh> MeshClasses[4];
+
+private:
+	class ACStaticMesh* MeshObjects[4];
+
+};
+
+#include "CSpawner.h"
+#include"CStaticMesh.h"
+#include "CStaticMesh_Sphere.h"
+
+
+ACSpawner::ACSpawner()
+{
+	
+	//MeshClass = ACStaticMesh_Sphere::StaticClass();
+	ConstructorHelpers::FClassFinder<ACStaticMesh> classAsset(TEXT("Blueprint'/Game/02_Spawn/BP_CStaticMesh_Cone.BP_CStaticMesh_Cone'"));
+		if (classAsset.Succeeded())
+			MeshClass = classAsset.Class;
+}
+void ACSpawner::BeginPlay()
+{
+	Super::BeginPlay();
+
+	for (int32 i = 0; i < 4; i++)
+	{
+		FTransform transform;
+
+		MeshObjects[i] =	GetWorld()->SpawnActor<ACStaticMesh>(MeshClasses[i],transform );
+
+	}
+}
+
+
+20230613
+Delegate (블프이벤트바인딩 함수저장변수)
+Spawn이어서
+for (int32 i = 0; i < 4; i++)
+	{
+		FTransform transform;
+
+		MeshObjects[i] = GetWorld()->SpawnActor<ACStaticMesh>(MeshClasses[i], transform);
+
+		FVector location = GetActorLocation();
+		MeshObjects[i]->SetActorLocation(FVector(location.X, location.Y + i * 200, location.Z));
+		 
+	}어제등록했던 4개스폰시키는것
+
+ConstructorHelpers:: 가져오기 생성자에서만사용가능
+UFUNCTION() 함수만들때있어야함
+	void ChangeColor(); 변수
+#include "Materials/MaterialInstanceConstant.h" 포함
+
+GEngine->AddOnScreenDebugMessage  블프print스트링
+
+UObject* assetObject = StaticLoadObject(UMaterialInstanceConstant::StaticClass(), nullptr, TEXT("MaterialInstanceConstant'/Game/StaticMeshes/Mat_StaticMesh_Inst.Mat_StaticMesh_Inst'"));
+	머티리얼인스턴스가져오기 런타임에서도
+	UMaterialInstanceConstant*  materailAsset = Cast<UMaterialInstanceConstant>(assetObject);
+	UMaterialInstanceConstant타입으로 assetObject을다이나믹캐스트 (형변환) (얼리얼에서는Cast로씀)
+	if(materailAsset!=nullptr) 
+		Mesh->SetMaterial(0, materailAsset);
+	에셋이비어있지않으면 메쉬에 머티리얼입히기 (0은 그냥모든멤버가 하나만가지고있어서쓴것)
+
+UKismetSystemLibrary::K2_SetTimer(this,"ChangeColor",1.0f,true); 자기 채인지칼라변수를 1초마다 바꾸기
+
+            float r = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f); r값 랜덤범위0~1
+	float g = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);g값
+	float b = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);b값
+	float a = 1.0f; 알파
+
+
+
+	DynamicMaterial->SetVectorParameterValue("BaseColor",FLinearColor(r,g,b,a)); 벡터파라미터 베이스칼라라는이름 다이나믹머티리얼변경
+	DynamicMaterial->SetScalarParameterValue("Metalic",r); 메탈릭
+	DynamicMaterial->SetScalarParameterValue("Roughness",r); 러프니스
+
+
+#include "CStaticMesh.h"
+#include "Components/StaticMeshComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/KismetMaterialLibrary.h"
+#include "Materials/MaterialInstanceConstant.h"
+
+ACStaticMesh::ACStaticMesh()
+{
+ 
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
+	RootComponent = Mesh;
+
+
+	
+}
+
+
+void ACStaticMesh::BeginPlay()
+{
+	Super::BeginPlay();
+
+	//ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> materialAsset(TEXT("MaterialInstanceConstant'/Game/StaticMeshes/Mat_StaticMesh_Inst.Mat_StaticMesh_Inst'");
+
+	UObject* assetObject = StaticLoadObject(UMaterialInstanceConstant::StaticClass(), nullptr, TEXT("MaterialInstanceConstant'/Game/StaticMeshes/Mat_StaticMesh_Inst.Mat_StaticMesh_Inst'"));
+	
+	UMaterialInstanceConstant*  materailAsset = Cast<UMaterialInstanceConstant>(assetObject);
+
+	DynamicMaterial = UKismetMaterialLibrary::CreateDynamicMaterialInstance(GetWorld(), materailAsset);
+
+	
+
+	if(materailAsset!=nullptr)
+		Mesh->SetMaterial(0, DynamicMaterial);
+
+	UKismetSystemLibrary::K2_SetTimer(this,"ChangeColor",1.0f,true);
+
+}
+
+
+void ACStaticMesh::ChangeColor()
+{
+	//GLog->Log();
+	//UE_LOG();
+	//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Orange, "Hi");
+	float r = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	float g = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	float b = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	float a = 1.0f;
+
+
+
+	DynamicMaterial->SetVectorParameterValue("BaseColor",FLinearColor(r,g,b,a));
+	DynamicMaterial->SetScalarParameterValue("Metalic",r);
+	DynamicMaterial->SetScalarParameterValue("Roughness",r);
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CStaticMesh.generated.h"
+
+UCLASS()
+class U04_PRATICE_API ACStaticMesh : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACStaticMesh();
+
+
+protected:
+	
+	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(VisibleDefaultsOnly)
+	class UStaticMeshComponent* Mesh;
+
+private:
+	UFUNCTION()
+	void ChangeColor();
+
+private:
+	UMaterialInstanceDynamic* DynamicMaterial;
+};
+함수선언시 
+콜바이벨류  원본이안바뀜
+콜바이레퍼런스 원본이바뀜
+
+
+
+20230614 로그찍어보기
+남길창 우클릭 close all but this 누르면 그거빼고다닫힘
+스튜디오에서 쓴코드는 컴파일하면 바로적용됨 
+Global헤더에 계속쓸헤더 모아놈 
+미리컴파일된헤더
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Utilities/CLog.h"
+c로그h
+	static void Print(int32 Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta); 벨류가인트타입이면 키는-1이디폴트5초동안 마젠타색깔로 프린트스트링
+	static void Print(float Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta);
+	static void Print(const FString& Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta);
+	static void Print(const FVector& Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta);
+	static void Print(const FRotator& Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta);
+
+
+c로그 cpp
+키값은 중복되면 나중에쓴게덮어쓰고 -1이아니라 다른값을쓰면 양수음수상관없이 큰값이밑에깔림
+void CLog::Print(int32 Invalue, int32 InKey, float InDuration, FColor InColor)
+{
+	GEngine->AddOnScreenDebugMessage(InKey, InDuration, InColor, FString::FromInt(Invalue));디버그메시지띄우기 (멤버를들어가는타입에맞춰서만듬)
+}
+
+void CLog::Print(float Invalue, int32 InKey, float InDuration, FColor InColor)
+{
+	GEngine->AddOnScreenDebugMessage(InKey, InDuration, InColor, FString::SanitizeFloat(Invalue));
+}
+
+void CLog::Print(const FString& Invalue, int32 InKey, float InDuration, FColor InColor)
+{
+	GEngine->AddOnScreenDebugMessage(InKey, InDuration, InColor, Invalue);
+}
+
+void CLog::Print(const FVector& Invalue, int32 InKey, float InDuration, FColor InColor)
+{
+	
+	GEngine->AddOnScreenDebugMessage(InKey, InDuration, InColor, Invalue.ToString());
+
+}
+
+void CLog::Print(const FRotator& Invalue, int32 InKey, float InDuration, FColor InColor)
+{
+	GEngine->AddOnScreenDebugMessage(InKey, InDuration, InColor, Invalue.ToString());
+
+}
+
+c프린트로그헤더
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CPrintLog.generated.h" 
+자동생성
+
+UCLASS()
+class U04_PRATICE_API ACPrintLog : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+
+	ACPrintLog();
+
+protected:
+	
+	virtual void BeginPlay() override;
+
+public:	
+
+	virtual void Tick(float DeltaTime) override;
+
+private:
+	float RunningTime = 0.f; 쓰레기값방지용 초기화
+
+};
+
+c프린트로그cpp
+#include "CPrintLog.h"
+#include "Global.h" 미리컴파일된거
+
+
+ACPrintLog::ACPrintLog()
+{
+
+	PrimaryActorTick.bCanEverTick = true;
+
+}
+
+
+void ACPrintLog::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CLog::Print(1);   float Invalue, int32 InKey=-1,float InDuration=5.0f,FColor InColor =FColor::Magenta 파라미터내용 InKey 키값이-1이아닌높은수가될수록밑에뜸, InDuration시간, InColor색, FString::FromInt(Invalue)받는타입
+	CLog::Print(2,1);
+	CLog::Print(3,2);
+	CLog::Print(4,2);
+	CLog::Print(5);
+
+
+	
+}
+
+
+void ACPrintLog::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime); 틱마다
+
+	
+	RunningTime += DeltaTime; 델타타임 러닝타임은헤더에서쓰레기값들어가서초기ㅗ하
+
+	CLog::Print(RunningTime,7); 키값7받고 프린트 계속호출되지만 키값이중복되면덮어쓰기때문에쌓이지않음
+	
+}
+clogcpp 64부터 0732
+
+
+20230615
+FMath: 왔다갔다하게해줌
+CDrawDebug.h 여러가지그리기
+private:
+FVector WorldLocation[4]; 저장할월드상의촤표 4개
+CDrawDebug.cpp
+Box = FBox(FVector(-50, -100, -50), FVector(50, 100, 50)); 박스에저장 fbox min벡터 max벡터
+center가 0,0,0 width:200 Heght:100 depth:100짜리박스
+DrawDebugBox(GetWorld(),GetActorLocation()+Box.GetCenter(),Box.GetExtent(),FColor::Cyan,true); 현재월드에 엑터좌표의박스센터에 박스넓이만큼 색깔은사이언으로 계속그려지게
+tick
+for (int32 i = 0; i < 4; i++)
+WorldLocation[i] = GetActorLocation() + RelativeLocation[i];화면에올렸을때좌표  RelativeLocation값넣으면바뀜
+DrawDebugSolidBox(GetWorld(), WorldLocation[0], Box.GetExtent(), FColor::Cyan);상자꽉채우기 0번위치에엑터로케이션에 색은사이온 위에항상그려서 true안켜도계속그림
+DrawDebugPoint(GetWorld(), WorldLocation[1], 20, FColor::Red);점생성 1번위치에  사이즈20 색은레드 점
+DrawDebugSphere(GetWorld(), WorldLocation[2], 200, 30, FColor::Green); 현재월드 2번위치에 반경200 정밀도(얼마나구에가깝나) 색은그린 구
+DrawDebugCircle(GetWorld(), WorldLocation[3], 100, 50, FColor::Blue);현재월드 3번위치에 반경100 정밀도50 색은블루  원
+
+FVector start = WorldLocation[0];밑에들어갈좌표 (솔리드박스위치)
+FVector end = WorldLocation[2];밑에들어갈좌표1 (스피어구위치)
+DrawDebugDirectionalArrow(GetWorld(), start, end, 200, FColor::White, false, -1.f, 0, 20.f);화살표방향그리기 월드의 스타트와엔드지점에 화살표사이즈 색은 하양,지속성없음 계속출력 깊이0 호출20
+
+FVector SpherLocation = WorldLocation[2]; 2번위치저장(스피어의중심)
+SpherLocation.X += FMath::Sin(GetWorld()->GetTimeSeconds()*3.0f)*200.f; 2번위치의 x방향만  3초마다왔다갔다 크기 200키우고
+DrawDebugPoint(GetWorld(), SpherLocation, 50, FColor::Red); 월드의 2번위치에 크기50 색빨강
+
+입력엑션이벤트키입력함
+CPlayer.h
+virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override; 액션이벤트할때쓰는거
+
+
+CPlayer.cpp
+
+20230616
+마네킹이전프로젝트에서가져왔음 메쉬머티리얼텍스쳐 애니메이션가져옴 블렌드스페이스도 언암드빼고지우고가져옴
+얼리얼은쿼터니언방식으로 엑터를그리는데 쿼터니언쓰기불편하니까 쓰기편한로테이션을 쓰고 쿼터니언으로 바꿔주는방식으로할수있음
+쿼터니언생성자에로테이션넣으면쿼터니언 로테이션생성자에 쿼터니언넣으면 로테이션으로자동으로바꿔줌
+플레이어이동이벤트바인드설정후 디폴트폰설정하여 스폰플레이어에 플레이어스폰할 폰설정 마네킹캐릭터가져옴
+CPlayer.h
+private:
+void OnMoveForward(float Axis); 바인드하는곳에쓰기위해만든함수
+void OnMoveRight(float Axis);바인드하는곳에쓰기위해만든함수
+
+private:
+UPROPERTY(VisibleDefaultsOnly)
+		class USpringArmComponent* SpringArm; 스프링암컴포넌트받을변수 이름스프링암
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCameraComponent* Camera; 카메라컴포넌트받을변수 이름카메라
+
+
+CPlayer.cpp
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+
+
+void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+PlayerInputComponent->BindAxis("MoveForward", this, &ACPlayer::OnMoveForward);축이벤트바인드(축이름,객체주소,바인드할함수주소)
+PlayerInputComponent->BindAxis("MoveRight", this, &ACPlayer::OnMoveRight);축이벤트바인드(축이름,객체주소,바인드할함수주소)
+}
+void ACPlayer::OnMoveForward(float Axis)
+{
+	FRotator rotator = FRotator(0.f, GetControlRotation().Yaw, 0.f); 로테이터생성 이름로테이터 , (피치,요(컨트롤의요값),롤)
+	FVector direction = FQuat(rotator).GetForwardVector().GetSafeNormal2D(); 벡터생성자 이름다이렉션 쿼터니언으로 벡터타입변경 노멀라이즈2d(0이들어가면나누기성립이안되니까0이나오면0에가까운수로바꿔줌)
+
+	AddMovementInput(direction,Axis); 방향입력시 1 -1 
+}
+
+void ACPlayer::OnMoveRight(float Axis)
+{
+	FRotator rotator = FRotator(0.f, GetControlRotation().Yaw, 0.f);
+	FVector direction = FQuat(rotator).GetRightVector().GetSafeNormal2D();
+
+	AddMovementInput(direction, Axis);
+}위와같음
+CGameMode.cpp
+#include "Characters/CPlayer.h" 
+ConstructorHelpers::FClassFinder<APawn> pawnAsset(TEXT("Blueprint'/Game/Player/BP_CPlayer.BP_CPlayer_C'"));a폰에 폰에셋이라고이름짓고 블프레퍼런스입력 _C를붙여야 클래스가들어감
+	if (pawnAsset.Succeeded())  폰에셋이있다면
+		DefaultPawnClass = pawnAsset.Class; 디폴트폰(플레이어가선택할폰)에 폰에셋의클래스설정
+
+
+ACPlayer::ACPlayer()
+{
+ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Character/Mesh/SK_Mannequin.SK_Mannequin'"));에셋가져오기 오브젝터 u스켈레탈메쉬 이름메쉬에셋 레퍼런스경로
+	if (meshAsset.Succeeded()) 메쉬에셋이있으면
+		GetMesh()->SetSkeletalMesh(meshAsset.Object); 메쉬에메쉬오브젝트넣기
+
+GetMesh()->SetRelativeLocation(FVector(0, 0, -88));  메쉬 z -88내리기
+GetMesh()->SetRelativeRotation(FRotator(0, -90, 0)); 메쉬 요 -90도돌리기 
+
+
+SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm"); 컴포넌트생성 스프링암컴포넌트 블루프린트이름 스프링암으로 그리고스프링암변수에저장 (참고로블프변수겹치면하나만생성됨 키의역할을가지고잇음)
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");컴포넌트생성 스프링암컴포넌트 블루프린트이름 카메라로 그리고카메라변수에저장
+
+	SpringArm->SetupAttachment(GetCapsuleComponent()); 스프링암 을 붙이기 캡슐컴포넌트밑에
+	SpringArm->SetRelativeLocation(FVector(0, 0, 60));스피링암위치60올리기
+	SpringArm->TargetArmLength = 200.f; 스프링암 길이 200
+	SpringArm->bDoCollisionTest = false;  스프링암부릿치게안하기  벽에대도안가까워짐
+	SpringArm->bUsePawnControlRotation = true;  마우스 피치회전풀어줌 위아래로움직일수있게해줌
+
+
+
+Camera->SetupAttachment(SpringArm); 카메라 붙이기 스프링암밑에
+
+bUseControllerRotationYaw = false; 카메라 요빼기
+	GetCharacterMovement()->bOrientRotationToMovement = true;  방향에따라변경 켜주기
+	GetCharacterMovement()->MaxWalkSpeed = 400.f; 캐릭터 걷는속도 400설정
+
+
+}
+
+20230620
+CHelpers.h
+#pragma once
+
+#define CheckNull(p){if(p==nullptr) return;} p값이없으면 리턴 있으면내려감
+#define CheckNullResult(p,result){if(p==nullptr) return result;} p값이있으면내려가고 없으면 리졸트값리턴
+#define CheckTrue(p){if(p==true) return;} p가트루면 내려가고 아니면 리턴
+#define CheckTrueResult(p,result){if(p==true) return result;}위와동일
+#define CheckFalse(p){if(p==false) return;}p가폴스면내려가고 아니면 리넡
+#define CheckFalseResult(p,result){if(p==false) return result;}위와동일
+
+
+class H04_BASICSYNTAX_API CHelpers 컴포넌트붙힐때쓸거임
+{
+public:
+	template<typename T>
+	static void CreateSceneComponent(AActor* InActor, T** OutComp, FName InName, USceneComponent* InParent = nullptr) //엑터받고(컴포넌트),뉴할당받을변수이름,보일변수이름,컴포넌트부모있으면부모이름 없으면 안쓰면됨 부모잇으면 부모 없으면 나한테붙힘
+	{
+
+		*OutComp = InActor->CreateDefaultSubobject<T>(InName); 아웃컴프가 인엑터안의 InName과 같은애가될거임
+
+		if (InParent != nullptr) 부모잇으면
+		{
+		(*OutComp)->SetupAttachment(InParent); 컴포넌트를부모밑에붙히고
+		return;리턴
+		}
+		
+
+		InActor->SetRootComponent(*OutComp);  엑터를 컴포넌트루트컴포넌트에붙힘
+	}
+
+};
+
+#pragma once
+
+#include "DrawDebugHelpers.h"
+
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+
+#include "Utilities/CLog.h"
+#include "Utilities/CHelpers.h" 자주쓸매크로추가함
+
+
+ACPlayer::ACPlayer(){
+SpringArm->SetRelativeLocation(FVector(0, 0, 60));스피링암위치60올리기
+}
+에니메이션cpp 애님인스턴스상속받음 이벤트그래프만 c++로설정할것임
+
+CAniminstatnce.h
+UCLASS()
+class H04_BASICSYNTAX_API UCAnimInstance : public UAnimInstance
+{
+	GENERATED_BODY()
+	
+public:
+	virtual void NativeUpdateAnimation(float DeltaSeconds) override;부모의함수오버라이드한것 부모에서퍼블릭이라 자식도퍼블릭으로만듦
+	virtual void NativeBeginPlay() override; 부모의비긴플레이함수오버라이드
+
+protected: 블프리드온리가 프라이빗안먹어서 프로텍티드로바꿈
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Animation") 블프에서읽을수있고 에디터에서보이게하고 카테고리이름애니메이션으로
+		float Speed;  속도에따른 애니메이션 에쓸변수
+
+private:
+	class ACPlayer* Player;플레이어를저장할 변수
+
+};
+
+CAniminstatnce.cpp
+
+#include "CAnimInstance.h"
+#include "Global.h" 글로벌헤더네에 키스맵매스라이브러리쓸려고
+#include "CPlayer.h" 플레이어얻어올려고추가
+
+void UCAnimInstance::NativeBeginPlay()
+{
+	Super::NativeBeginPlay(); 슈퍼콜
+
+	Player = Cast<ACPlayer> (TryGetPawnOwner()); 플레이어변수에저장 애니메이션의오너 
+
+}
+
+
+void UCAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
+{
+	Super::NativeUpdateAnimation(DeltaSeconds);슈퍼콜
+
+	//if(Player!=nullptr) return만약플레이어가 값이없으면 리턴 있으면내려감
+	CheckNull(Player);만약플레이어가 값이없으면 리턴 있으면내려감 매크로로만들어서 글로벌해더에 헤더로넣어놧음
+	Speed = Player->GetVelocity().Size2D(); 스피드에 플레이어의 벨롭시티(플레이어의속도)저장
+	//TryGetPawnOwner();
+}
+
+CPlayer.h
+private: // action event
+	void OnSprint(); 쉬프트누를때이벤트바인드할변수
+	void OffSprint(); 땔때
+
+	void OnHorintalLook(float Axis); 마우스돌릴때 요축
+	void OnVerticalLook(float Axis); 마우스돌릴때 피치축
+
+
+CPlayer.cpp
+#include "CAnimInstance.h" 애님인스턴스 찾을려고넣어놈
+
+ACPLayer::ACPlayer()
+{
+	ConstructorHelpers::FClassFinder<UCAnimInstance> animClass(TEXT("AnimBlueprint'/Game/Player/ABP_CPlayer.ABP_CPlayer_C'")); 블프에서가져오기 애님인스턴스타입 이름animClass로 경로
+	if (animClass.Succeeded()) 애님클래스가있으면
+		GetMesh()->SetAnimInstanceClass(animClass.Class); 메쉬에 애님클래스넣어주기
+}
+
+
+
+void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	PlayerInputComponent->BindAxis("MoveForward", this, &ACPlayer::OnMoveForward);  축이벤트
+	PlayerInputComponent->BindAxis("MoveRight", this, &ACPlayer::OnMoveRight);  축이벤트
+	PlayerInputComponent->BindAxis("HorizontalLook", this, &ACPlayer::OnHorintalLook); 축이벤트 호리존탈룩 호리존탈룩에바인드
+	PlayerInputComponent->BindAxis("VerticalLook", this, &ACPlayer::OnVerticalLook); 축이벤트 버티컬룩바인드
+
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Pressed,this, &ACPlayer::OnSprint);액션이벤트 쉬프트누르기 바인드 온스프린트에
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &ACPlayer::OffSprint);액션이벤트 쉬프트누르기 바인드 온스프린트에
+}
+
+void ACPlayer::OnSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 600.f; 여기오면 맥스워크스피드 600으로 그럼애니메이션에서스피드600되서달리기
+}
+
+void ACPlayer::OffSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 400.f;여기오면 400
+
+}
+
+
+void ACPlayer::OnHorintalLook(float Axis)
+{
+	AddControllerYawInput(Axis);  여기오면 요축더해줌
+}
+
+void ACPlayer::OnVerticalLook(float Axis)
+{
+	AddControllerPitchInput(Axis); 여기오면 피치축더해줌
+}
+
+
+
+CBox클래스만들었음 엑터상속받고 4번폴더콜리젼에넣음
+
+CBox.h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CBox.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACBox : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACBox();
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+	class USceneComponent* Scene; 씬컴포넌트 이름씬
+
+	UPROPERTY(VisibleDefaultsOnly)
+	class UBoxComponent* Box; 박스컴포넌트 이름박스
+
+	UPROPERTY(VisibleDefaultsOnly)
+	class UTextRenderComponent* Text; 텍스트컴포넌트 이름텍스트
+
+};
+
+CBox.cpp
+
+#include "CBox.h"
+#include "Components/BoxComponent.h" 박스컴포넌트찾는거
+
+
+ACBox::ACBox()
+{
+ 	
+	//Scene=	CreateDefaultSubobject<USceneComponent>("Scene"); 신컴포넌트에 신저장
+	//SetRootComponent(Scene); 신에다붙힘
+	CHelpers::CreateSceneComponent<USceneComponent>(this, &Scene, "Scene"); 자신에게 신멤버변수(뉴신파라미터타입)를 신이라는이름으로붙일거임
+
+	//Box = CreateDefaultSubobject<UBoxComponent>("Box");박스저장
+	//Box->SetupAttachment(Scene);신밑에붙힘
+	CHelpers::CreateSceneComponent<UBoxComponent>(this, &Box, "Box",Scene);자신에게 박스변수(뉴박스컴포넌트)를 박스이름으로붙이고 신밑에넣을거임
+}
+
+20230621
+CBox.cpp
+	CHelpers::CreateSceneComponent(this, &Scene, "Scene"); 자신에 컴포넌트 신변수타입 이름신으로 붙임 
+	CHelpers::CreateSceneComponent(this, &Box, "Box", Scene);자신에 컴포넌트 박스변수타입 이름박스으로 신밑에붙임  
+	CHelpers::CreateSceneComponent(this, &Text, "Text", Scene);자신에 컴포넌트 텍스트변수타입 이름텍스트으로 신밑에붙임 
+
+	Box->SetRelativeScale3D(FVector(3.f)); 스케일3
+	Box->bHiddenInGame = false; 박스 보이게
+
+	Text->SetRelativeLocation(FVector(0,0,100)); 텍스트위치 z100올리기
+	Text->SetRelativeRotation(FRotator(0, 180, 0));텍스트180도회전
+	Text->SetTextRenderColor(FColor::Red); 텍스트 칼라 빨강
+	Text->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center); 텍스트가운데정렬
+	Text->SetText(FText::FromString(GetName())); 
+
+CActorOverlap.h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CActorOverlap.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACActorOverlap : public ACBox
+{
+	GENERATED_BODY()
+	
+
+protected:
+	virtual void BeginPlay() override; 비긴플레이생성
+
+private:
+	void BeginOverlap(AActor* OverlappedActor, AActor* OtherActor); 오버랩에 타입두개저장할함수
+};
+
+
+
+CActorOverlap.cpp (CBox상속받음)
+#include "CActorOverlap.h"
+
+
+void ACActorOverlap::BeginPlay()
+{
+	Super::BeginPlay(); 슈퍼콜
+
+	OnActorBeginOverlap.AddDynamic(this, &ACActorOverlap::BeginOverlap); 엑터비긴오버랩 다이나믹이벤트로바인드 자신을 비긴오버랩이라는이름인함수와 바인드
+}
+
+
+void ACActorOverlap::BeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	//CLog::Print(OtherActor->GetName());오버랩된애(액터타입) 이름찍을거임
+	CLog::Print(OtherActor->GetActorLabel()+"is come in");들어온애이름라벨명찍고 is come in같이출력
+}
+
+
+CcomponentOverlap.h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CComponentOverlap.generated.h"
+
+
+UCLASS()
+class H04_BASICSYNTAX_API ACComponentOverlap : public ACBox
+{
+	GENERATED_BODY()
+
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UPointLightComponenet* PointLight;
+};
+
+
+20230622
+Global.h
+#include "Kismet/GameplayStatics.h" 추가됨 엑터비긴오버랩쓰려면사용
+
+CDelegate.h 충돌체땜에C박스를상속받음
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h" 
+#include "CDelegate.generated.h" 
+
+DECLARE_DELEGATE(FBeginOverlapSignature); 비긴오버랩메크로 이름FBeginOverlapSignature정함
+DECLARE_DELEGATE(FEndOverlapSignature); 엔드오버랩매크로 이름FEndOverlapSignature정함
+DECLARE_DELEGATE_RetVal_OneParam(FString, FRandomColorSignature, FLinearColor);//랜덤색갈바꾸는함수만들매크로이름FRandomColorSignature스트링타입인 멤베에리니어칼라가지는함수
+
+
+UCLASS()
+class H04_BASICSYNTAX_API ACDelegate : public ACBox
+{
+	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override; 비긴플레이
+
+private:
+	UFUNCTION() 안쓰면터질수도있음
+		void BeginOverlap(AActor* OverlappedActor, AActor* OtherActor); 비긴오버랩
+
+	UFUNCTION()
+		void EndOverlap(AActor* OverlappedActor, AActor* OtherActor);엔드오버랩
+	
+public:
+	FBeginOverlapSignature OnBeginOverlap; 바인딩한이벤트로 이거실행할거임 충돌겹침할시
+	FEndOverlapSignature OnEndOverlap; 겹칩끝날시
+	FRandomColorSignature OnRandomColor; 바인드한이벤트 있으면 실행할이벤트
+};
+
+
+CDelegate.cpp
+#include "CDelegate.h"
+#include "Global.h" 로그찍으려고넣음
+
+void ACDelegate::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OnActorBeginOverlap.AddDynamic(this, &ACDelegate::BeginOverlap); 엑터오버랩이벤트
+	OnActorEndOverlap.AddDynamic(this, &ACDelegate::EndOverlap); 엔드오버랩
+}
+
+void ACDelegate::BeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+		if (OnBeginOverlap.IsBound())//바인드된이벤트가있는지없는지검사해줌
+		OnBeginOverlap.Execute();//익스큐트내에 널체크가되있음위에거안써도됨
+
+if (OnRandomColor.IsBound()) 바인드이벤트있으면
+	{
+		FLinearColor color=FLinearColor::MakeRandomColor(); color에 랜덤칼라저장
+		color.A = 1.f; 칼라의알파는 1로정함
+		FString str; str은 FString타입으로 아까매크로에서 FString타입받게만듬
+		str.Append("Random Color Is"); str호출하면 텍스트찍음
+		str.Append(OnRandomColor.Execute(color)); 이벤트실행하고 색바꾸는거 텍스트나옴
+
+		CLog::Log(str);로그찍기
+
+
+	}
+
+}
+
+void ACDelegate::EndOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+
+	if (OnEndOverlap.IsBound())위에꺼와같음
+		OnEndOverlap.Execute();같음
+}
+
+CPointLights.h 엑터상속받음
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CPointLights.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACPointLights : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+
+	ACPointLights();
+
+protected:
+
+	virtual void BeginPlay() override;
+
+private:
+	void On(); 들어가면불켜주는이벤트 바인드할때쓸것
+	void Off(); 이건끔
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class USceneComponent* Root; 신컴포넌트생성 루트
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UPointLightComponent* PointLight1; 포인트라이트컴포넌트생성 포인트라이트1
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UPointLightComponent* PointLight2;컴포넌트생성 포인트라이트2
+};
+
+CPointLights.cpp
+#include "CPointLights.h"
+#include "Global.h" 올엑터스오브클래스쓰려고 #include "Kismet/GameplayStatics.h"
+#include "CDelegate.h"
+#include "Components/PointLightComponent.h"
+
+
+ACPointLights::ACPointLights()
+{
+	CHelpers::CreateSceneComponent(this, &Root, "Root");컴포넌트붙힐 루트
+	CHelpers::CreateSceneComponent(this, &PointLight1, "PointLight1", Root); 1번불 루트
+	CHelpers::CreateSceneComponent(this, &PointLight2, "PointLight2", Root);2번불 루트
+
+	PointLight1->SetIntensity(1e+4f);//10000 세기
+	PointLight1->SetAttenuationRadius(200.f);//반경값
+	PointLight1->LightColor = FColor(255, 128, 50);//주황비스무리색
+
+	PointLight2->SetIntensity(1e+4f);//10000
+	PointLight2->SetAttenuationRadius(200.f);/반경값
+	PointLight2->LightColor = FColor(255, 128, 50);//주황비스무리색
+	PointLight2->SetRelativeLocation(FVector(200, 0, 0));x200 떨굼
+
+
+}
+
+
+void ACPointLights::BeginPlay()
+{
+	Super::BeginPlay();콜
+	
+	PointLight1->SetVisibility(false);//처음안보이게
+	PointLight2->SetVisibility(false);같음
+
+	TArray<AActor*> actors; 배열 이름 엑터스
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACDelegate::StaticClass(), actors); 딜리게이트에있는 모든배열가져오는거
+	CheckFalse(actors.Num() > 0); 배열이하나도없는지체크
+
+	ACDelegate* trigger = Cast<ACDelegate>(actors[0]); 바인드용으로 triger에 배열저장
+	CheckNull(trigger); 있는지없는지확인
+
+	trigger->OnBeginOverlap.BindUFunction(this, "On");//온 이벤트바인드
+	trigger->OnEndOverlap.BindUFunction(this, "Off");오프 이벤트에바인드
+
+	trigger->OnRandomColor.BindUFunction(this, "RandomLightColor"); 랜덤라이트칼라 이벤트에바인드
+}
+
+void ACPointLights::On()
+{
+	PointLight1->SetVisibility(true);//보이게
+	//PointLight2->SetVisibility(true);같음
+}
+
+void ACPointLights::Off()
+{
+	PointLight1->SetVisibility(false);안보이게
+	PointLight2->SetVisibility(false);가음
+}
+
+
+FString ACPointLights::RandomLightColor(FLinearColor InColor)
+{
+	PointLight2->SetLightColor(InColor);  포인트라이트2번 칼라는 바인드된칼라로할거임
+	PointLight2->SetVisibility(true); 포인트라이트  2번 보이게하는거 여기로바꿧고 (어차피같이나옴)
+
+
+	return InColor.ToString(); 인칼라스트링타입으로리턴
+}
+
+CMuticast.h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CMulticast.generated.h"
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FMulticastSignature, int32, FLinearColor); //바인드이벤트함수만드는매크로 파라미터두개 받는함수 함수이름,받을타입,받을타입
+
+
+UCLASS()
+class H04_BASICSYNTAX_API ACMulticast : public ACBox
+{
+	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override;비긴플레이
+
+
+private:
+	UFUNCTION()
+		void BeginOverlap(AActor* OverlappedActor, AActor* OtherActor);오버랩이벤트
+
+public:
+	FMulticastSignature OnMulticast; 바인드한이벤트
+};
+
+CMulticast.cpp
+
+
+#include "CMulticast.h"
+#include "Global.h"
+
+void ACMulticast::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OnActorBeginOverlap.AddDynamic(this, &ACMulticast::BeginOverlap);//AddDynamic딜리게이트에 바인드할때사용하는함수
+}
+
+void ACMulticast::BeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OnMulticast.IsBound())
+	{
+
+		int32 index = UKismetMathLibrary::RandomIntegerInRange(0, 2); //0~2값랜덤
+		FLinearColor color = FLinearColor::MakeRandomColor(); 랜덤칼라
+		color.A = 1.f; 알파 1
+
+		OnMulticast.Broadcast(index, color);//익스큐트역할함 한번에여러이벤트를호출함 인덱스내0~2값의 랜덤칼라
+	}
+}
+CSpheres.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CSpheres.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACSpheres : public AActor
+{
+	GENERATED_BODY()
+
+public:
+	ACSpheres();
+
+protected:
+	virtual void BeginPlay() override; 비긴플레이
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class USceneComponent* Root; 신컴포먼트 이름루트
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UStaticMeshComponent* Spheres[3]; 메쉬컴포넌트 이름 스피어 배열3개짜리
+
+};
+
+CSpheres.cpp
+
+#include "CSpheres.h"
+#include "Global.h"
+
+ACSpheres::ACSpheres()
+{
+	CHelpers::CreateSceneComponent(this, &Root, "Root"); 루트컴포넌트 이름루트로
+
+	for (int32 i = 0; i < 3; i++)
+	{
+		FString name; 
+		name.Append("Sphere");
+		name.Append(FString::FromInt(i + 1));
+
+		CHelpers::CreateSceneComponent(this, &Spheres[i], FName(name), Root); 스테이틱메쉬컴포넌트 배열에 이름붙은거 루트에붙힘
+	}
+}
+
+void ACSpheres::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
+20230623
+
+CHelpers.h 파일가져오는템플릿 추가
+#include "CoreMinimal.h"
+#include "Engine/World.h"
+
+public: 오브젝트가져오는템플릿
+	template<typename T> 인자T로받음
+	static void GetAsset(T** OutAsset,FString InPath) 최종적으로이게리턴됨
+	{
+		ConstructorHelpers::FObjectFinder<T> asset(*InPath); 블프에서가져오기 오브젝트 패스네임스트링타입 이게 저위에저장됨
+		verifyf(asset.Succeeded(), L"Asset Not Foundd"); 에셋경로가없으면 저거뜨고터짐
+			
+		*OutAsset = asset.Object; 이게 T** OutAsset에저장됨 
+
+		
+	}
+
+template<typename T>
+	static void GetAssetDynamic(T** OutAsset, FString InPath)
+	{
+		T* asset = Cast<T>(StaticLoadObject(T::StaticClass(), nullptr,*InPath));
+		verifyf(!!asset, L"Asset Not Found");
+
+		*OutAsset = asset;
+	}
+
+CSpheres.h 전거수정없이추가
+
+private:
+	class UMaterialInstanceDynamic* DynamicMaterials[3]; 다이나믹머테이얼인스턴스타입 3개
+	FVector OrginLocation[3]; 위치타입 3개
+	
+	int32 Number = 100;람다에서 화면에띄울숫자
+};
+
+CSphers,cpp
+ACSpheres::ACSpheres()
+{
+	CHelpers::CreateSceneComponent(this, &Root, "Root"); 루트컴포넌트 만들기
+
+
+
+	//ConstructorHelpers::FObjectFinder<UStaticMesh> meshAsset(TEXT());
+	//if (meshAsset.Succeeded())
+	//	meshAssetObject = meshAsset.Object;
+	UStaticMesh* meshAsset; 스태틱메쉬타입인 메쉬에셋
+	CHelpers::GetAsset(&meshAsset, "StaticMesh'/Game/StaticMeshes/SM_Sphere.SM_Sphere'");레퍼런스메쉬에셋 과그주소
+
+
+	for (int32 i = 0; i < 3; i++)
+	{
+		FString name;
+		name.Append("Sphere");
+		name.Append(FString::FromInt(i + 1));
+
+		CHelpers::CreateSceneComponent(this, &Spheres[i], FName(name), Root); 컴포넌트만들기 
+
+		Spheres[i]->SetRelativeLocation(FVector(i * 150, 0, 0)); x150만큼 떨어트리기
+		Spheres[i]->SetStaticMesh(meshAsset);  스테틱메쉬타임인 메쉬에셋에넣음
+
+	}
+}
+
+
+void ACSpheres::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	
+	//UMaterialInstance* asset=Cast<UMaterialInstance>(StaticLoadObject(UMaterialInstance::StaticClass(), nullptr, TEXT("MaterialInstanceConstant'/Game/StaticMeshes/MAT_StaticMesh_Inst.MAT_StaticMesh_Inst'")));
+	UMaterialInstance* materialAsset;
+	CHelpers::GetAssetDynamic(&materialAsset, "MaterialInstanceConstant'/Game/StaticMeshes/MAT_StaticMesh_Inst.MAT_StaticMesh_Inst'");
+
+
+	for (int32 i = 0; i < 3; i++)
+	{
+		FTransform transform = Spheres[i]->GetComponentToWorld(); 월드에배치한 컴포넌트원래위치
+		OrginLocation[i] = transform.GetLocation();를가져오기 +저장
+
+		DynamicMaterials[i] = UMaterialInstanceDynamic::Create(materialAsset, nullptr);
+		Spheres[i]->SetMaterial(0, DynamicMaterials[i]);
+	}
+
+	TArray<AActor*> actors;엑터배역 이름 에터즈
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACMulticast::StaticClass(), actors);월드에있는거가져오기 엑터스
+	CheckFalse(actors.Num() > 0); 있으면내려감
+
+	ACMulticast* multicast = Cast<ACMulticast>(actors[0]); 타입안맞으니캐스팅
+	CheckNull(multicast); 널체크
+
+	multicast->OnMulticast.AddUFunction(this, "Fall"); 바인드 Fall함수에바인드
+	
+	multicast->OnMulticast.AddLambda([=](int32 InIndex,FLinearColor InColor) 
+		{
+			CLog::Print(InColor.ToString());
+			CLog::Print(Number);
+
+		});
+}
+
+
+void ACSpheres::Fall(int32 InIndex, FLinearColor InColor)
+{
+	CLog::Print("Random index :" + InIndex); 로그찍기
+
+	for (int32 i = 0;i < 3; i++)
+	{
+		Spheres[i]->SetSimulatePhysics(false); 물리피직스끄기
+		Spheres[i]->SetWorldLocation(OrginLocation[i]); 아까저장한원래위치에 셋하기
+		
+	}
+
+	Spheres[InIndex]->SetSimulatePhysics(true); 물리피직스 켜기 여기까지오면 전부위치초기화시키고 하나떨굼
+
+}
+
+20230626
+CEvent.h
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CEvent.generated.h"
+
+/**
+ * 
+ */
+UCLASS()
+class H04_BASICSYNTAX_API ACEvent : public ACBox
+{
+	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override; 비긴플레이
+
+
+private:
+	UFUNCTION()
+	void BeginOverlap(AActor* OverlappedActor, AActor* OtherActor);오버랩
+
+public:
+	DECLARE_EVENT_OneParam(ACEvent, FEventSignature, int32); 이벤트바인드용 int32받을거임
+
+	FEventSignature OnEvent; 이름
+};
+
+
+
+
+CEvent.cpp
+
+#include "CEvent.h"
+#include "Global.h"
+
+void ACEvent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OnActorBeginOverlap.AddDynamic(this, &ACEvent::BeginOverlap); 겹칠시 이벤트바인드
+}
+
+void ACEvent::BeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	if (OnEvent.IsBound())있으면
+	{
+		int32 index = UKismetMathLibrary::RandomIntegerInRange(0, 2);//0~2랜덤범위 
+
+
+		OnEvent.Broadcast(index);0~2값 사이로 OnEvent 함수실행
+
+	}
+
+}
+
+
+CParticles.h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CParticles.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACParticles : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+
+	ACParticles();
+
+protected:
+
+	virtual void BeginPlay() override; 비긴플레이
+
+private:
+	UFUNCTION()
+		void PlayParticle(int32 InIndex); 바인드하려면 인트32받는거
+
+private:
+	UPROPERTY(EditDefaultsOnly)
+		class UParticleSystem* Particles[3]; 파티클컴포넌트 배열3개짜리 생성
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class USceneComponent* Root;루트컴포넌트생성
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UTextRenderComponent* Text; 텍스트컴포넌트생성
+
+
+
+
+};
+
+CParticles.cpp
+
+
+
+#include "CParticles.h"
+#include "Global.h"
+#include "Components/TextRenderComponent.h"
+#include "Particles/ParticleSystem.h"
+#include "CEvent.h"
+
+ACParticles::ACParticles()
+{
+ 
+	CHelpers::CreateSceneComponent(this, &Root, "Root"); 루트컴포넌트에 루트붙이기
+	CHelpers::CreateSceneComponent(this, &Text, "Text", Root); 루트컴포넌트에 텍스트붙이기
+
+	Text->SetRelativeRotation(FRotator(0, 100, 0)); 회전 y100
+	Text->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center); 가운데정렬
+	Text->SetTextRenderColor(FColor::Red); 색 레드
+	Text->SetText(FText::FromString(GetActorLabel())); 텍스트라벨붙힘
+
+
+	CHelpers::GetAsset(&Particles[0], "ParticleSystem'/Game/Particles/P_Destruction1.P_Destruction1'"); 가져오기 파티클1번 폭팔레퍼런스경로
+	CHelpers::GetAsset(&Particles[1], "ParticleSystem'/Game/Particles/P_ky_healAura.P_ky_healAura'");가져오기 2번 힐오라
+	CHelpers::GetAsset(&Particles[2], "ParticleSystem'/Game/Particles/P_ky_lightning3.P_ky_lightning3'"); 가져오기 3번 라이트닝
+	
+
+}
+
+
+void ACParticles::BeginPlay()
+{
+	Super::BeginPlay(); 슈퍼콜
+
+	TArray<AActor*> actors; 엑터배열 만듬
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACEvent::StaticClass(), actors); 월드내의 클래스 배열만든거
+	CheckFalse(actors.Num() > 0); 내용이있으면
+
+	ACEvent* eventObject = Cast<ACEvent>(actors[0]); 이벤트 실행
+	CheckNull(eventObject); 이벤트가있으면
+
+	eventObject->OnEvent.AddUFunction(this, "PlayParticle"); 이벤트실행 PlayParticle
+	
+}
+
+void ACParticles::PlayParticle(int32 InIndex)
+{
+	
+
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Particles[InIndex], GetActorTransform());
+
+
+}
+
+CBlueprintEvent.h c박스를상속받음
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CBlueprintEvent.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACBlueprintEvent : public ACBox
+{
+	GENERATED_BODY()
+
+
+protected:
+	virtual void BeginPlay() override;
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent)//BI Event 오버라이딩은안되고 실제실행몸체는 블프에서 해야실행됨
+		void ChangePlayerColor();
+
+	UFUNCTION(BlueprintNativeEvent) //BN cpp에서 실행몸체정의가능하고 오버라이딩에서 블프에서변경가능 Event _Implementation 이라는키워드가붙어잇어야실행가능 실제보이는이벤트와 진짜이름이다름
+		void ResetPlayerColor();
+private:
+	UFUNCTION()
+		void BeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	UFUNCTION()
+		void EndOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+};
+
+
+CBlueprintEvent.cpp
+#include "CBlueprintEvent.h"
+#include "Global.h"
+
+void ACBlueprintEvent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OnActorBeginOverlap.AddDynamic(this, &ACBlueprintEvent::BeginOverlap);
+	OnActorEndOverlap.AddDynamic(this, &ACBlueprintEvent::EndOverlap);
+}
+
+void ACBlueprintEvent::BeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	ACPlayer* player = Cast<ACPlayer>(OtherActor);
+	CheckNull(player);
+	ChangePlayerColor();
+}
+
+void ACBlueprintEvent::EndOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	ACPlayer* player = Cast<ACPlayer>(OtherActor);
+	CheckNull(player);
+
+	ResetPlayerColor();
+}
+
+//void ACBlueprintEvent::ResetPlayerColor()
+void ACBlueprintEvent::ResetPlayerColor_Implementation() //실제보이는이름과 진짜이름이다름
+{
+
+	ACPlayer* player = Cast<ACPlayer>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	CheckNull(player);
+
+	player->SetColor_Reset();
+}
+
+
+CPlayer.h
+	UFUNCTION(BlueprintCallable)
+		void SetColor(FLinearColor InBodyColor, FLinearColor InLogoColor);
+
+	UFUNCTION(BlueprintCallable)
+		void SetColor_Reset();
+
+private:
+	class UMaterialInstanceDynamic* BodyMaterial; 머티리얼두개중한개
+	class UMaterialInstanceDynamic* LogoMaterial; 두개중한개
+
+CPlayer.cpp 추가만됨
+#include "Materials/MaterialInstanceDynamic.h" 머티리얼인스턴스다이나믹가져올때
+#include "Materials/MaterialInstanceConstant.h" 머티리얼인스턴스콘스탄트도따로써야됨
+
+void ACPlayer::BeginPlay()
+{
+	Super::BeginPlay();
+
+	UMaterialInstanceConstant* bodyMaterialAsset;
+	CHelpers::GetAssetDynamic(&bodyMaterialAsset, "MaterialInstanceConstant'/Game/Characters/Materials/M_UE4Man_Body_Inst.M_UE4Man_Body_Inst'");
+
+	UMaterialInstanceConstant* logoMaterialAsset;
+	CHelpers::GetAssetDynamic(&logoMaterialAsset, "MaterialInstanceConstant'/Game/Characters/Materials/M_UE4Man_ChestLogo.M_UE4Man_ChestLogo'");
+
+	BodyMaterial=UMaterialInstanceDynamic::Create(bodyMaterialAsset,nullptr);
+	LogoMaterial = UMaterialInstanceDynamic::Create(logoMaterialAsset, nullptr);
+
+	GetMesh()->SetMaterial(0, BodyMaterial);
+	GetMesh()->SetMaterial(1, LogoMaterial);
+
+}
+
+void ACPlayer::SetColor(FLinearColor InBodyColor, FLinearColor InLogoColor)
+{
+	BodyMaterial->SetVectorParameterValue("BodyColor", InBodyColor);
+	LogoMaterial->SetVectorParameterValue("BodyColor", InLogoColor);
+}
+
+void ACPlayer::SetColor_Reset()
+{
+	FLinearColor origin = FLinearColor(0.450980f, 0.403922f, 0.360784f);
+	SetColor(origin, origin);
+}
+
+CVertex.h //엑터상속받음
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CVertex.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACVertex : public AActor
+{
+	GENERATED_BODY()
+
+public:
+	ACVertex();
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class USceneComponent* Root;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UStaticMeshComponent* Mesh;
+
+};
+CVertex.cpp
+
+
+#include "CVertex.h"
+#include "Global.h"
+
+
+ACVertex::ACVertex()
+{
+	CHelpers::CreateSceneComponent(this, &Root, "Root");
+	CHelpers::CreateSceneComponent(this, &Mesh, "Mesh", Root);
+
+	UStaticMesh* meshAsset;
+	CHelpers::GetAsset(&meshAsset, "StaticMesh'/Game/StaticMeshes/SM_Cylinder.SM_Cylinder'");
+	Mesh->SetStaticMesh(meshAsset);
+	Mesh->SetRelativeScale3D(FVector(1.f, 1.f, 2.5f));
+
+
+}
+
+
+void ACVertex::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+CLineTrace.h//엑터상속받음
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CLineTrace.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACLineTrace : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACLineTrace();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:	
+	virtual void Tick(float DeltaTime) override;
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		USceneComponent* Root;
+
+private:
+	class ACVertex* Vertices[2];
+
+};
+
+
+CLineTrace.cpp
+
+
+#include "CLineTrace.h"
+#include "Global.h"
+#include "CVertex.h"
+
+ACLineTrace::ACLineTrace()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	CHelpers::CreateSceneComponent(this, &Root, "Root");
+}
+
+void ACLineTrace::BeginPlay()
+{
+	Super::BeginPlay();
+
+
+	TArray<AActor*> actors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACVertex::StaticClass(), actors);
+	CheckFalse(actors.Num() > 0);
+
+	Vertices[0] = Cast<ACVertex>(actors[0]);
+	Vertices[1] = Cast<ACVertex>(actors[1]);
+}
+void ACLineTrace::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+20230627
+
+CLineTrace.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CLineTrace.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FLineTraceResult,class AActor*,InActor, FLinearColor, InColor);//함수이름받을타입 블프핀에서보일이름 받을타입 보일이름
+
+UCLASS()
+class H04_BASICSYNTAX_API ACLineTrace : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACLineTrace();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:	
+	virtual void Tick(float DeltaTime) override;
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		USceneComponent* Root;
+
+private:
+	class ACVertex* Vertices[2];
+	bool bCheckVertex;
+
+public:
+	UPROPERTY(BlueprintAssignable) 
+		FLineTraceResult OnLineTraceResult;
+private:
+	UFUNCTION()
+	void Ragdoll(class AActor* InActor, FLinearColor InColor);//위에만든매크로바인드용
+
+};
+
+CLineTrace.cpp
+#include "CLineTrace.h"
+#include "Global.h"
+#include "Components/CapsuleComponent.h"
+#include "CVertex.h"
+#include "Characters/CPlayer.h"
+
+ACLineTrace::ACLineTrace()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	CHelpers::CreateSceneComponent(this, &Root, "Root");
+}
+
+void ACLineTrace::BeginPlay()
+{
+	Super::BeginPlay();
+
+	TArray<AActor*> actors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACVertex::StaticClass(), actors);
+	CheckFalse(actors.Num() > 0);
+
+	bCheckVertex = (actors.Num() >= 2) ? true : false;
+	if (bCheckVertex == false)
+	{
+		FString messgae = "Not Enough Vertex";
+		UE_LOG(LogTemp, Error, TEXT("%s"), *messgae);
+
+		return;
+	}
+
+	Vertices[0] = Cast<ACVertex>(actors[0]);
+	Vertices[1] = Cast<ACVertex>(actors[1]);
+
+	OnLineTraceResult.AddDynamic(this,&ACLineTrace::Ragdoll);
+
+}
+
+void ACLineTrace::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	CheckFalse(bCheckVertex);
+
+	FVector start = Vertices[0]->GetActorLocation();
+	FVector end = Vertices[1]->GetActorLocation();
+
+	TArray<AActor*> ignores;
+	ignores.Add(Vertices[0]);
+	ignores.Add(Vertices[1]);
+
+	
+
+	FHitResult hitResult;
+
+	if (UKismetSystemLibrary::LineTraceSingleByProfile
+	(
+		GetWorld(),
+		start,
+		end,
+		"Pawn",
+		false,
+		ignores,
+		EDrawDebugTrace::ForOneFrame,
+		hitResult,
+		true,
+		FLinearColor::Green,
+		FLinearColor::Red
+
+	))
+	{
+		if (OnLineTraceResult.IsBound())
+		{
+
+			OnLineTraceResult.Broadcast(hitResult.GetActor(), FLinearColor::MakeRandomColor());
+		}
+	}
+
+	//DrawDebugLine(GetWorld(), start, end, FColor::Red);
+
+}
+
+void ACLineTrace::Ragdoll(AActor* InActor, FLinearColor InColor)
+{
+	ACPlayer* player = Cast<ACPlayer>(InActor);
+	CheckNull(player);
+
+	player->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision); //캡슐충돌체없에기
+	player->GetMesh()->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);//매쉬 키기
+	player->GetMesh()->SetSimulatePhysics(true);//
+
+	FVector force = player->GetActorForwardVector() * -100000.f; // 날리는세기
+	player->GetMesh()->AddImpulse(FVector(force));//날리기 포워드벡터의반대
+}
+
+CPhysicsCube.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CPhysicsCube.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACPhysicsCube : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+
+	ACPhysicsCube();
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UStaticMeshComponent* Mesh;
+};
+CPhysicsCube.cpp
+
+
+#include "CPhysicsCube.h"
+#include "Global.h"
+
+ACPhysicsCube::ACPhysicsCube()
+{
+	CHelpers::CreateSceneComponent(this, &Mesh, "Mesh");
+
+	UStaticMesh* meshAsset;
+	CHelpers::GetAsset(&meshAsset, "StaticMesh'/Game/StaticMeshes/SM_Cube.SM_Cube'");
+	Mesh->SetStaticMesh(meshAsset);
+	Mesh->SetSimulatePhysics(true);
+	Mesh->SetCollisionObjectType(ECollisionChannel::ECC_PhysicsBody);
+
+	UMaterial* materailAsset;
+	CHelpers::GetAsset(&materailAsset, "Material'/Game/StaticMeshes/Textures/Mat_Box.Mat_Box'");
+	Mesh->SetMaterial(0, materailAsset);
+
+
+}
+
+
+20230628
+CPhysicsCube.cpp
+
+#include "CPhysicsCube.h"
+#include "Global.h"
+
+ACPhysicsCube::ACPhysicsCube()
+{
+	CHelpers::CreateSceneComponent(this, &Mesh, "Mesh");
+
+	UStaticMesh* meshAsset;
+	CHelpers::GetAsset(&meshAsset, "StaticMesh'/Game/StaticMeshes/SM_Cube.SM_Cube'");
+	Mesh->SetStaticMesh(meshAsset);
+	Mesh->SetSimulatePhysics(true);
+	Mesh->SetCollisionObjectType(ECollisionChannel::ECC_PhysicsBody);
+
+	UMaterial* materailAsset;
+	CHelpers::GetAsset(&materailAsset, "Material'/Game/StaticMeshes/Textures/Mat_Box.Mat_Box'");
+	Mesh->SetMaterial(0, materailAsset);
+
+	Mesh->SetMassOverrideInKg(NAME_None, 50.f); 질량50으로설정 이것만바꿈
+
+}
+
+
+CSphereTrace.h
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "CSphereTrace.generated.h"
+
+UCLASS()
+class H04_BASICSYNTAX_API ACSphereTrace : public AActor
+{
+	GENERATED_BODY()
+	
+public:	
+	ACSphereTrace();
+
+protected:
+
+	virtual void BeginPlay() override;
+
+public:
+	UFUNCTION()
+		void Explosion(AActor* OverlappedActor,AActor* OtherActor); 바인드할이벤트
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UParticleSystemComponent* Particle; 파티클컴포넌트
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UTextRenderComponent* Text; 텍스트컴포넌트
+
+
+};
+
+CSphereTrace.cpp
+#include "CSphereTrace.h"
+#include "Global.h"
+#include "Components/TextRenderComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+
+ACSphereTrace::ACSphereTrace()
+{
+	CHelpers::CreateSceneComponent(this, &Particle, "Particle"); 신컴포넌트만들기 파티클 파티클에붙임
+	CHelpers::CreateSceneComponent(this, &Text, "Text", Particle); 텍스트 파티클에붙힘
+
+	UParticleSystem* particleAsset; 파티클
+	CHelpers::GetAsset(&particleAsset, "ParticleSystem'/Game/Particles/P_Destruction1.P_Destruction1'"); 가져오기 파티클에셋
+	Particle->SetTemplate(particleAsset);
+	Particle->bAutoActivate = false;
+
+	Text->SetRelativeRotation(FRotator(0, 180, 0));
+	Text->SetTextRenderColor(FColor::Red);
+	Text->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center);
+	Text->SetWorldSize(60);
+	Text->SetText(FText::FromString("Boom Here!!!!"));
+
+}
+
+
+void ACSphereTrace::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+void ACSphereTrace::Explosion(AActor* OverlappedActor, AActor* OtherActor)
+{
+	FVector start = GetActorLocation();
+	FVector end = start + 10;
+
+	TArray<TEnumAsByte<EObjectTypeQuery>> objectTypes;
+	objectTypes.Add(EObjectTypeQuery::ObjectTypeQuery4);
+
+	TArray<AActor*> ignores;
+
+	TArray<FHitResult> hitResults;
+
+	if (UKismetSystemLibrary::SphereTraceMultiForObjects
+	(
+		GetWorld(),
+		start,
+		end,
+		1000,
+		objectTypes,
+		false,
+		ignores,
+		EDrawDebugTrace::ForDuration,
+		hitResults,
+		true
+	))
+	{
+		Particle->ResetParticles();
+		Particle->SetActive(true);
+
+
+
+		for (const FHitResult hitResult : hitResults)
+		{
+			UStaticMeshComponent* meshComp = Cast<UStaticMeshComponent>(hitResult.GetActor()->GetRootComponent());
+			if (!!meshComp)
+			{
+				meshComp->AddRadialImpulse
+				(
+					GetActorLocation(),
+					1000,
+					15000000 / meshComp->GetMass(),
+					ERadialImpulseFalloff::RIF_Linear
+
+
+				);
+			}
+
+		}
+	}
+}
+
+CExplosionTrigger.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "04_Collision/CBox.h"
+#include "CExplosionTrigger.generated.h"
+
+
+ 
+UCLASS()
+class H04_BASICSYNTAX_API ACExplosionTrigger : public ACBox
+{
+	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override;
+	
+};
+
+
+
+CExplosionTrigger.cpp
+
+#include "CExplosionTrigger.h"
+#include "CSphereTrace.h"
+#include "Global.h"
+
+void ACExplosionTrigger::BeginPlay()
+{
+	Super::BeginPlay();
+
+
+	TArray<AActor*> actors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACSphereTrace::StaticClass(), actors);
+	CheckFalse(actors.Num() > 0);
+
+	ACSphereTrace* explosion = Cast<ACSphereTrace>(actors[0]);
+	CheckFalse(explosion);
+
+	OnActorBeginOverlap.AddDynamic(explosion,&ACSphereTrace::Explosion);
+
+
+}
+
+에러로못들음
+20230629 ABP플레이어 animgraph해야됨 1번키누르면 총드는몽타쥬와핸드소켓에붙히는것 블렌드스페이스포즈변경
+홀스터소켓위치 (X=-8.224598,Y=-15.944425,Z=21.391996) (Pitch=9.319806,Yaw=-100.716316,Roll=144.406754)
+라이플소켓위치(X=-10.000000,Y=4.600000,Z=-0.440000) (Pitch=-0.750000,Yaw=85.199997,Roll=13.600000)
+
+
+20230630
+equi[[ed여부에따라 그랩포즈와언암드포즈를불랜드한 이킵포즈를만들고 spine_01번을기준으로 
+조준효과를위해 fov와 스프링암의위치조정
+
+
+20230703
+에임오프셋
+
+20230704
+스태틱메쉬에머티리얼만들고 내적(dot)을이용하여 한방향만출력시킨다음 월드스페이스가아닌 로컬스페이스로바꿔 위치를바꿔도 그방향만출력하게하고
+머티리얼인스턴스를 공개변수로공개하고 월드에서넣어주고 콘스트럭트스크립트를이용하여 바로적용
+라인트레이스이용하여 총나가게하고 타입에따라 힘줘서밀쳐내는기능만듬
+
+20230705
+카메라쉐이크 블프카메라쉐이크를 받아서 c헬퍼즈에만들걸로 쏠때 실행되게함
+
+20230706
+데칼클래스만들고 라이플의파이어링쪽에서 데칼재생 
+연사기능 bRapid 를만들고 이용하여  RapidTimer 로타이머유지될동안만연사
+고정켜서이상한데로나가는거해결
+CRifle.h
+
+FORCEINLINE bool IsFiring() { return bFiring; }//쏘고있는지아닌지판단 쏠때무기못집어넣게할때등사용
+FORCEINLINE bool IsRapid() { return bRapid; }//연사중인지아닌지판단 쏠때모드못바꾸게할때
+
+
+FORCEINLINE void ToggleRapid() { bRapid != bRapid; } //호출되면 결과를뒤집어줌 true면false false면true
+
+UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class UMaterial* Decal; 데칼컴포넌트생성
+
+	bool bRapid;		//Is Auto Firing 연사중인지아닌지판단
+
+	FTimerHandle RapidTimer; 타이머에맞춰서 연사끊으려고 마우스누를때와땔때에연결
+
+CRifle.cpp
+#include "Components/DecalComponent.h"
+CHelpers::GetAsset(&Decal, "Material'/Game/Materials/M_Decal.M_Decal'");데칼에셋가져온거
+
+FRotator impactrotator = hitResult.ImpactNormal.Rotation();//위치에따라일정한데칼을찍어줌 안하면바코드나옴
+
+void ACRifle::Begin_Fire()
+{
+if (bRapid == true)
+	{
+		//연사
+		GetWorld()->GetTimerManager().SetTimer(RapidTimer, this, &ACRifle::Firing, 0.1f, true);
+		return;
+	}
+}
+
+void ACRifle::End_Fire()
+{
+if (bRapid == true&& RapidTimer.IsValid())
+		GetWorld()->GetTimerManager().ClearTimer(RapidTimer);
+}
+
+UDecalComponent* decal=UGameplayStatics::SpawnDecalAtLocation(GetWorld(), Decal, FVector(5), hitResult.Location, impactrotator,10.f); 월드에 데칼 사이즈5 10초동안
+decal->SetFadeScreenSize(0); 인클루드해야나옴 데칼은멀어지면안보이는데 0을하면 어디서나보임
+UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),ImpactParticle,hitResult.Location,impactrotator,true);임펙트파티클하고 재생하고 임팩트파티클은재생후사라짐
+
+
+20230707
+조준할때조건문빼서 조준안할때도 밀려나게만듬
+총을집어넣을때 엔드파이어링호출해서 더이상나가지않게함
+에임오프셋1디로 애니메이션 선형보간하여 위치에따른자세변환+간이애니메이션만들기
+자세변경으로인해총알나가는게좀자연스러워짐
+
+20230710 페이즈5로넘어감 멀티플레이 https://github.com/simeddk/U05_Session
+oss
+서버와클라이언트가각각독립된공간 공유하고있지않음
+클라이언트에서실행된걸서버에서무시함
+서버
+"C:\Program Files\Epic Games\UE_4.25\Engine\Binaries\Win64\UE4Editor.exe" "D:\202304123DprojectK\U05_Session\U05_Session.uproject" /Game/Maps/Play?listen  -server -log
+
+클라이언트
+"C:\Program Files\Epic Games\UE_4.25\Engine\Binaries\Win64\UE4Editor.exe" "D:\202304123DprojectK\U05_Session\U05_Session.uproject" 127.0.0.1 -game
+
+20230711
+플룻끼리는 ==을쓰면 조건에따라 실행이안될수도있음 ==말고>= <=쓰는게좋음 같다연산하려면 near어쩌구쓰면됨
+리플리케이트옵션(서버가클라이언트에상태전파하는거)
+
+PublicIncludePaths.Add(ModuleDirectory); //빌드에추가하면 모듈에있는헤더../없이그냥쓸수있게해줌
+
+움직이는발판 왕복
+UCLASS()
+class U05_SESSION_API ACMovingPlatform : public AStaticMeshActor
+{
+	GENERATED_BODY()
+
+public:
+	ACMovingPlatform();
+
+	virtual void Tick(float DeltaTime) override;
+
+protected:
+	virtual void BeginPlay() override;
+	
+private:
+	//movingplatform speed for tick
+	UPROPERTY(EditAnywhere)
+		float Speed = 20.f;
+
+	UPROPERTY(EditAnywhere, meta = (MakeEditWidget))
+		FVector TargetLocation = FVector(0,0,100); //타겟포인트만든거
+
+private:
+	FVector GlobalStartLocation; //원래좌표
+	FVector GlobalTargetLocation; //타겟포인트좌표
+
+};
+
+#include "CMovingPlatform.h"
+
+
+
+
+
+ACMovingPlatform::ACMovingPlatform()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh> meshAsset(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube_Chamfer.1M_Cube_Chamfer'"));
+	if (meshAsset.Succeeded())
+		GetStaticMeshComponent()->SetStaticMesh(meshAsset.Object);
+
+	GetStaticMeshComponent()->SetRelativeScale3D(FVector(1.f, 1.f, 0.2f));
+
+	SetMobility(EComponentMobility::Movable);
+}
+
+void ACMovingPlatform::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// 서버의 위치값을 리플리케이트 (클라이언트에전파)
+	if (HasAuthority() == true)
+	{
+		SetReplicates(true);
+		SetReplicateMovement(true);
+
+		
+    }
+	GlobalStartLocation = GetActorLocation(); //엑터의위치
+	GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation); //타겟포인트의위치
+	
+}
+
+void ACMovingPlatform::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	//GetLocalRole() == ENetRole::ROLE_Authority;
+	//서버에서만 이동
+	
+
+
+	if(HasAuthority()==true)
+	{
+	FVector location = GetActorLocation(); //엑터로케이션
+
+	float totalDistance = (GlobalStartLocation - GlobalTargetLocation).Size(); //엑터의배치위치에서타겟로케이션으로향하는방향크기
+	float currentDistance = (location - GlobalStartLocation).Size();//엑터의틱마다의위치에서의 배치위이로향하는방향과크기
+
+	//만약 틱마다호출된방향과크기가 원래보다크면호출됨
+	if (currentDistance >= totalDistance) 
+	{
+		FVector temp = GlobalStartLocation;
+		GlobalStartLocation = GlobalTargetLocation;
+		GlobalTargetLocation = temp;
+		//값을스왑하는알고리즘
+	}
+
+
+	FVector direction = (GlobalTargetLocation - GlobalStartLocation).GetSafeNormal(); //방향과길이
+	location += direction * Speed * DeltaTime; //위치만큼이동
+	SetActorLocation(location); //틱마다바뀌는위치가 틱시간과동일하여순간이동하지않고 스무스하게바뀜
+	
+	
+	}
+
+	
+	
+}
+
+20230712
+하마치vpn으로 멀티구현
+윈도우파워셀(이나명령프롬포트)에서 &얼리얼엔진실행파일경로 (같은버젼의)프로젝트실행파일경로 서버열린아이피주소 -game
+
+
+버튼누를때움직이는발판만듬
+
+20230713
+게임인스턴스의 Init(); 은 플레이시호출됨 비긴플레이대신으로사용가능
+//뉴펀션키워드 함수를콘솔명령어로만들어주는거 exec
+	UFUNCTION(Exec)
+C++내에서 맵을이동하는함수 ServerTravel():서버내전체이동 ClientTravel():특정유저만특정맵으로이동
+ &"C:\Program Files\Epic Games\UE_4.25\Engine\Binaries\Win64\UE4Editor.exe" "D:\202304123DprojectK\U05_Session\U05_Session.uproject" 127.0.0.1 -game
+게임인스턴스 를만들어서 런치게임에서 콘솔명령어를이용해 아이피주소로서로 만나게하기
+위젯상속구조 uwidget->upanelwiget(이걸상속받아야 밑에붙일수잇음)
+
+PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay","UMG(#include "Blueprint/UserWidget.h"모듈이름)" }); pragma역할을함 헤더의 모듈이 등록되있지않으면 등록해줘야함
+
+20230714
+위젯가져오고 위젯있는거확인후 뷰포트에붙이기
+위젯디자인만들음
+부모만들거상속미리받음
+클릭이벤트를위해 위젯부모클래스만듦
+
+20230718
+위젯멤버찾을려면엄청나게반복문돌려야하는데 밑에이거쓰면 같은이름을위젯에서찾아서 맞는타입함수를 자동매칭시켜서 반복문하루종일안써도됨
+UPROPERTY(meta = (BindWidget))
+	class UButton* HostButton;예 (불푸위젯안에 버튼저이름으로만듬)
+게임인스턴스의 뷰포트붙이고마우스보이게하는코드 리펙토링 ->C메뉴로옮김
+
+위젯이 위젯스위쳐WidgetSwitcher라는 화면스위칭기능같은게있음
+
+20230719
+호스트 조인버튼 되돌아기기버튼 기능등넣었고
+어타치 디태치 자신의게임인스턴스가져오는 기능을관리하는 부모클래스로 CMenuBase를만들고 원래있던코드 그에맞게변경
+
+20230720
+CInGame에서 버튼누르면 뒤로가기와나가기넣음
+버튼에이벤트바인드해서 캔슬버튼은 부모함수의디태치호출해서 위젯지우고
+퀵버튼은 부모의 자기의게임인스턴스 변수에 게임인스턴스만든 메인메뉴돌아가기함수호출해줌 딱히부모가아니라 변수는 모두찾을수있게 인터페이스에정의해줌
+
+cMenu 를상속받은 wb위젯에 퀵버튼만들고 그거바인딩해서 콘솔명령어 퀵해줌
+
+"OnlineSubSystem" 빌드.cs에추가 온라인관련
+
+20230721
+SessionInterface를이용하여 세션만들기 세션파괴 등을써서 호스트버튼누르면 방만들고 이미세션이있어서이름이중복되면 한번파괴후만들게만듦
+호스트버튼클릭시 ->호스트서버실행- >크리트세션->크리트세션컴플리트->호스트 순으로실행
+ 호스트버튼클릭시 호스트에서 서버이름이같으면 디스트로이세션실행하고 실행끝나면-> 디스트로이컴플리트 실행함 ->디스트로이컴플리트에서 크리에이트세션 으로 새세션만들어줌
+
+20230724
+할예정
+1.방만들때 방제정하기
+2. 방들검색하기(find session)
+
+이닛에임시로파인드세션만듦
+파인드셋션작동하는지확인하려고로그띄워봄
+결과
+GameProject: Display: Finished find session
+GameProject: Display: Session ID:C00407574B35CED5FE2505AE5BED7DEE
+GameProject: Display: ping:72
+순서 init은 비긴플레이같은용도
+init->이벤트딜리게이트하고 랜검색등조건 파인드 세션서치에검색결과저장->
+조인시일단방하나만들게만듦
+조인만들다맘
+
+20230725
+TOptional: int같이 포인트타입nullptr을못받는애들의 기본값을 nullptr(즉값못받음) 로 설정?(값이들어왔는지않들어왔는지판단가능)가능 사용법예):TOptional<uint32> SelectedRowIndex; 이름<타입> 변수명;
+조인에위젯붙이는코드 세션리스트로옮기고 id변수만들고 이름에id받음
+조인시 리스트초기화를한번해 같은거또나오게하지않게하고
+세션실제이름을보이게함
+세션에 인덱스번호붙이고 작동하나안하나확인
+
+
+20230726
+이제누르면들어가집니다
+steamSDK
+RHI:얼리얼에서 DX다루는코드
+무조건스팀은 런치게임으로밖에테스트못함
+스팀무료앱아이디480 2명제한 스팀클라우드서비스사용불가
+언리얼 온라인서브시스템스팀
+Matchmaking (매치메이킹, 로비 및 GameServer API)
+
+Leaderboard (리더보드)
+
+Achievement (업적)
+
+Voice (음성)
+
+UserCloud (유저 클라우드)
+
+SharedCloud (공유 클라우드)
+
+External UI (외부 UI)
+플러그인 온라인서브시스템스팀활성화 
+빌드.cs에 "OnlineSubSystemSteam"추가
+config->defaultEngine.ini맨밑에복붙
+[/Script/Engine.GameEngine]
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="OnlineSubsystemSteam.SteamNetDriver",DriverClassNameFallback="OnlineSubsystemUtils.IpNetDriver")
+
+[OnlineSubsystem]
+DefaultPlatformService=Steam
+
+[OnlineSubsystemSteam]
+bEnabled=true
+SteamDevAppId=480
+
+[/Script/OnlineSubsystemSteam.SteamNetDriver]
+NetConnectionClassName="OnlineSubsystemSteam.SteamNetConnection"
+
+20230727 언리얼 마우스위치제한
+파워셀에서 -nosteam하면 oss스팀실행안해줌
+STeamOSS ->Session
+1)Lobby(internet) ->480 +무료 =2명제한
+2)Internet(steam cloud) ->앱아이디 +돈
+=>크리트와파인드수정
+스팀같은버젼이면온라인멀티 두명까지가능 접속중일때 딴사람들어가면 둘다안들어가짐
+집에서테스트해봐야함
+같은아이디로는파인드세션을할수없음 다른아이디여야함
+근데만들기는됨
+버튼색입힐예정
+
+CSessionrow
+public
+	UPROPERTY(BlueprintReadOnly)
+		bool bSelfClicked; //클릭여부
+cmenu
+private:
+UPROPERTY(meta = (BindWidget))
+		class UScrollBox* SessionList;  //스크롤박스
+private:
+TOptional<uint32> SelectedRowIndex; //인덱스번호
+
+for (int32 i = 0; i < SessionList->GetChildrenCount(); i++) 불타입을이용하여 클릭한걸알수있는알고리즘
+	{
+		UCSessionRow* sessionRow = Cast<UCSessionRow>(SessionList->GetChildAt(i));
+		if (!!sessionRow)
+		{
+			sessionRow->bSelfClicked = (SelectedRowIndex.IsSet() && i == SelectedRowIndex); //인덱스번호와내가선택한것을비교하여 클릭한걸알수있음
+		}
+
+
+	}
+
+세션로우의 셀프클릭드로 메뉴에서 배열의특정버튼의 클릭여부알수있으니까 그걸로 색변경만듦
+
+크리트세션에서 oss를뭘쓰냐에따라서 세션설정옵션바꿀예정
+
+20230728
+언리얼 세션네임은 게임세션으로고정되어있음
+const static FName SESSION_NAME = TEXT("GameSession");
+
+온라인서브시스템에널이들어오면 
+sessionSettings.bIsLANMatch = true;//랜매치 온 (로비방식으로하려면꺼야됨 안끄면조건문자체가안걸려서실행이안됨) 
+		sessionSettings.bUsesPresence = false; //게임플레이중인지온라인인지오프라인인지 유저정보 폴수
+		}
+무언가들어오면 다반대로
+스팀켜있으면 파워셀로 nosteam해서 실행하여테스트
+
+세션id받고 / 호스트유저이름찍기 / 현재인원수
+
+구조체기본은퍼블릭이지만안의 제네레이트바디있어서 기본이프라이빗으로바뀜
+
+FSessionData data; 
+data.Name = searchResult.GetSessionIdStr();//방이름
+data.MaxPlayers = searchResult.Session.SessionSettings.NumPublicConnections; //최대들어올수있는인원
+data.CurrentPlayers = data.MaxPlayers - searchResult.Session.NumOpenPublicConnections;//현재인원 최대인원 - 세션의비어있는개수 = 현재인원
+data.HostUserName = searchResult.Session.OwningUserName;//호스트유저이름 
+
+foundSession.Add(data);//파운드센션구조체에 결과넣어주기
+
+FOnlineSessionSettings 의 셋 키와벨류입력과 겟 키를받으면벨류를가져옴 을이용하여 방이름지을수있게만들기만들예정
+
+20230731
+1.호스트버튼누르면 방제만들기 만듦
+인터페이스내에 호스트를 FString 타입하나받게하고 나머지 변수받는 거와 함수이름다수정그후
+메인메뉴위젯의 메뉴스위처에 3번째위젯만들고  이벤트바인드로 호스트버튼누를시들어가게만들고 만든위젯안의 컨펌호스트버튼누르면 그전에들어간 호스트서버를실행하게하고 
+세션네임텍스트안에있는 텍스트를 스트링으로 받아 그전에만든 조인시 호스트이름에 나오게해줌
+
+2.호스트와조인시 로비맵으로들어가고 3명째입장시 플레이맵으로서버트래블
+void PostLogin(APlayerController* NewPlayer) override;//서버에서만실행됨 플레이어 입장시호출됨 파라미터로 플레이어컨트롤러를받음
+			
+void Logout(AController* Exiting) override;//무언가게임에나갈시 호출됨 파라미터로 컨트롤러를받음
+
+
+void ACLobyGameMode::PostLogin(APlayerController* NewPlayer)
+{
+	Super::PostLogin(NewPlayer);
+
+	++NumberOfPlayers;
+	
+	//만약사람이3명이상이면
+	if (NumberOfPlayers >= 3)
+	{
+		UWorld* world = GetWorld();
+		CheckNull(world);//월드있을시
+
+		world->ServerTravel("/Game/Maps/play?listen"); //서버트래블(모든인원)로 플레이맵으로이동
+	}
+}
+
+20230801
+GetWorldTimerManager().SetTimer사용하여
+예)
+FTimerHandle timerHandle;
+GetWorldTimerManager().SetTimer(timerHandle,this,&ACLobyGameMode::StartGame,10);
+3명되면10초뒤에 게임맵으로가게변경
+bUseSeamlessTravel = true;//맵에서맵을넘어갈때 지웟다넘어가는애들을 지우지고리스폰하지않고 그대로데리고옴 예)플레이어스테이트,컨트롤러 장점:로딩이빠르게(오픈월드)느껴짐 단점:게임모드의포스트로그인(입장시실행되는거)가실행이안됨
+
+StartSession으로 게임시작하면 검색이안되게해줌
+
+OnNetworkFailure네트워크접속성공여부알수있는거 게임엔진에있음 오버라이드로사용
+예)
+if(!!GEngine)
+GEngine->OnNetworkFailure().AddUObject(this, &UCGameInstance::OnNetworkFailure); //네트워크접속이끊키면 바인드되있는 네트워크페일러실행
+!
+void UCGameInstance::OnNetworkFailure(UWorld* InWorld, UNetDriver* InNetDriver, ENetworkFailure::Type InFailureReason, const FString& InErrorMessage)
+{
+	CLog::Print("Network Error Message:"+ InErrorMessage); //에러메시지띄우기
+
+	ReturnToMainMenu();//메인메뉴로가는함수
+
+}
+
+20230807_파일은이어서 리포지토리만 06fps로새로만들어서 ㄱㄱ
+콘텐츠브라우저의 신규추가->c++->1인칭 추가함
+애니메이션스타트팩 마켓에서받아서추가함
+신규추가한것c++파일쓸모없는거 지울예정
+적당히 터치같은쓸모없는거지우고 상대에게보일메쉬설정후 
+나에게안보이게설정 끝
+
+20230808
+온라인으로만드려면 모든 공유할무언가에는 리플리케이트를걸어야통신됨
+테스트를위해스팀설정끄기 디폴트엔진.ini변경 
+[OnlineSubsystem]
+DefaultPlatformService=NULL
+
+[OnlineSubsystemSteam]
+bEnabled=false
+3명보이는지확인 
+로비에서서버트레블로 플레이맵이아니라 fps로옮기게바꿈
+
+//RPC에대해알아보자
+실행방법
+선언
+private:
+UFUNCTION(Reliable, Server) 서버에서만 Reliable,필수
+	void OnServer();//서버에서만실행되는함수
+
+몸체
+//_Implementation만들때붙여야됨 실행은그대로
+void AFP_FirstPersonCharacter::OnServer_Implementation()
+{
+	
+	CLog::Print("Baaananana");
+}
+
+//실행시는 본래함수이름으로
+OnServer();
+
+UFUNCTION(NetMulticast, Reliable)
+		void OnNetMulticast();//서버에서실행되면 모두에게전파되고 클라이언트에서실행되면 클라이언트만실행되는함수 
+
+//RPC에대해알아보자
+private:
+	UFUNCTION(Reliable, Server)
+		void OnServer();//릴리블은넣어야됨 서버에서만실행되는함수
+
+	UFUNCTION(NetMulticast, Reliable)
+		void OnNetMulticast();//서버에서실행되면 모두에게전파되고 클라이언트에서실행되면 클라이언트만실행되는함수 
+	
+	UFUNCTION(Client, Unreliable)
+		void OnClient();//서버에서실행해도 클라이언트에서만실행되는함수
+
+//_Implementation만들때붙여야됨 실행은그대로
+void AFP_FirstPersonCharacter::OnServer_Implementation()
+{
+	
+	CLog::Print("Baaananana");
+	OnNetMulticast();//클라이언트에서와다르게 서버에서실행하게하면 모든클라이언트에서도실행됨
+	OnClient();//서버로옮겼어도 클라이언트에서만실행됨
+}
+
+//위와같음 
+void AFP_FirstPersonCharacter::OnNetMulticast_Implementation()
+{
+	CLog::Print("multicast Call");
+}
+
+void AFP_FirstPersonCharacter::OnClient_Implementation()
+{
+	CLog::Print("Client Call");
+}
+
+20230809
+RPC이어서하자
+RPC는 업로드 클라이언트와서버통신?
+리플리케이트는 다운로드개념 서버에서클라이언트로전파
+
+리플리케이트만설정한 변수를그냥 일반변수와같이사용해보았더니
+그냥변수는 당연히 혼자만변경되어나왔고 
+리플리케이트만설정한변수는 다르게나오는것처럼보였지만 동기화문제로인해 사실상같은게나오긴했다
+
+파티클가져오기는함
+
+20230810
+게임모드는서버만가지고있음
+플레이어컨트롤러로서버와통신가능
+게임스테이트플레이어스테이트폰등은 서로 리플리케이트로공유중
+허드위젯은플레이어마다따로
+리플리케이트는 컨스트럭트에서는적용안되고 비긴플레이에서됨
+
+파티클넣음
+발사그림넣음
+
+게임스테이트만들고 플레이어스테이트만듦
+
+20230811
+게임스테이트의이넘을 플레이어스테이트에 변수만들고
+플레이어스테이트를
+게임모드에 등록하고
+플레이어에 변수만들고 
+변경함수적어서팀색변경
+
+클라이언트는 플레이어에서오소리티체크로클라이언트만실행
+서버는 포스트로그인으로만 실행하면 서버만실행됨
+
+그리고게임모드를이용하여 팀별색정해줌
+
+엑터받은플레이어스폰포인트클래스만듦
+
+20230814
+
+
+//팀 분배
+	if (RedTeamPlayers.Num() > BlueTeamPlayers.Num())
+	{
+		BlueTeamPlayers.Add(playerPawn);
+		playerState->Team = ETeamType::Blue;
+	}
+	else
+	{
+		RedTeamPlayers.Add(playerPawn);
+		playerState->Team = ETeamType::Red;
+	}
+
+	//팀 세팅
+	playerPawn->CurrentTeam = playerState->Team;
+	playerPawn->SetTeamColor(playerState->Team);
+
+	//Get 스폰포인트s
+	UWorld* world = GetWorld();
+	CheckNull(world);
+
+	for (TActorIterator<ACSpawnPoint> it(world); it; ++it)
+	{
+		if (it->GetTeam() == ETeamType::Red)
+			RedTeamSpawnPoints.Add(*it);
+		else
+			BlueTeamSpawnPoints.Add(*it);
+	}
+
+
+	APlayerController* hostController = world->GetFirstPlayerController();
+	CheckNull(hostController);
+
+	AFP_FirstPersonCharacter* hostPawn = Cast<AFP_FirstPersonCharacter>(hostController->GetPawn());
+	CheckNull(hostPawn);
+
+	MoveToSpawnPoint(hostPawn);
+
+	MoveToSpawnPoint(playerPawn);
+
+20230816
+허드클래스에 통상 ui세팅
+대미지주는함수자체가서버에서만실행됨
+대미지주기
+other->TakeDamage()
+대미지받기
+대미지준쪽걸오버라이드해서 재정의 
+TakeDamage() override
+
+큐브날리는거(필요없음)와 라인트레이스삭제(서버에서실행할예정)
+
+// Check for impact
+	//const FHitResult Impact = WeaponTrace(StartTrace, EndTrace);//라인트레이스의 시작과끝
+
+	// Deal with impact
+	//AActor* DamagedActor = Impact.GetActor();//실제라인에충돌된물체
+	//UPrimitiveComponent* DamagedComponent = Impact.GetComponent();//대미지받을컴포넌트 
+
+	// 데미지엑터가있으면서 나는아니고 컴포넌트있고 시뮬레이트피직스켜있을시
+	//if ((DamagedActor != NULL) && (DamagedActor != this) && (DamagedComponent != NULL) && DamagedComponent->IsSimulatingPhysics())
+	//{
+	//	DamagedComponent->AddImpulseAtLocation(ShootDir * WeaponDamage, Impact.Location);//방향*대미지 많큼 받은방향으로날립니다
+	//}
+
+대미지주고받기 허드에 체력스코어데스붙여서출력 죽었을때렉돌 맞았을때상대에게히트리엑션
+다음에할것 팀킬 시체공격 점수복사해결 죽었을때메시지띄우기 리스폰하기 죽었을때 조작못하게하기
+
+20230817
+대미지
+리스폰
+
+
+*20230818 여기부터새프로젝트 07tps
+캐릭터만들고 이동 메쉬 헤라클리우스만듦 애님인스턴스넣고 다이렉트스피드 블렌드스페이스넣음
+캐릭터에적용할 C스테이터스컴포넌트까지만듦
+
+20230822
+이동 마우스줌이동
+이넘
+몽타쥬데이터테이블 
+
+
+20230823
+TArray<FMontageData*> MontageDatas; 모를때 -> FMontageData* MontageDatas[(int32)EStateType::Max]; 맥스앞만큼만읽기
+
+엑터의비긴플레이에서 슈퍼콜을하면 컴포넌트의비긴플레이를먼저호출하고 엑터의비긴플레이를호출함
+DataTable->GetAllRows<FMontageData>("", MontageDatas); //""(비우면전체로침)행의모든정보를가져와서 몽타쥬데이타스행렬에저장
+
+몽타쥬데이터읽고 플레이어에 액션이벤트바인드후 스테이트모드에서 딜리게이트로실행
+
+몽타쥬노티파이까지만듦
+
+20230824
+
+컴포넌트 데이타테이블 애님인스턴스 로 몽타쥬상황에맞게재생
+
+20230825
+
+어타치클래스<>이큅먼트 <>엑션데이터<> 
+
+오너->컴포넌트(많음)<->데이터애셋클래스 : 데이터내의 각각배열을 가져와서 컴포넌트에서 수정해서 오너에서 이벤트로 실행
+
+UPROPERTY(EditDefaultsOnly)
+		class UCActionDataAsset* Datas[(int32)EActionType::Max];//에디터에서액션데이터의맥스숫자보이게하기 왠진몰라도숫자만뜨는게아니라 내용까지다뜸
+
+20230828
+타입검사후 무기장착 해제
+void UCActionComponent::SetMode(EActionType InNewType)
+{
+
+	//한번더눌렀으면 언암드모드로
+	if (Type == InNewType)
+	{
+		SetUnarmedMode();
+
+		return;
+	}
+
+	//언암드가아닌 타입을 장착하고있었을경우
+	else if (IsUnarmedMode()==false)
+	{
+		if(!!Datas[(int32)Type] && !!Datas[(int32)Type]->GetEquipment())
+			Datas[(int32)Type]->GetEquipment()->Unequip();//데이타하고이킵먼트가있으면 이킵먼트의 언이킵실행 ->무기집어넣기
+	}
+
+	Datas[(int32)InNewType]->GetEquipment()->Equip(); //언암드중이면 무기장착
+
+	//다른무기간에교체만들예정
+
+	ChangeType(InNewType);//누른타입으로
+
+
+
+
+}
+
+노티파이스테이트클래스만들고 노티파이로 이큅언이큅해줌
+
+
+UFUNCTION(BlueprintNativeEvent)
+	FString GetNotifyName() const;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	bool Received_NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) const;
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	bool Received_NotifyTick(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float FrameDeltaTime) const;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	bool Received_NotifyEnd(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation) const;
+
+
+	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration);
+	virtual void NotifyTick(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float FrameDeltaTime);
+	virtual void NotifyEnd(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation);
+
+	virtual void BranchingPointNotifyBegin(FBranchingPointNotifyPayload& BranchingPointPayload);
+	virtual void BranchingPointNotifyTick(FBranchingPointNotifyPayload& BranchingPointPayload, float FrameDeltaTime);
+	virtual void BranchingPointNotifyEnd(FBranchingPointNotifyPayload& BranchingPointPayload);
+
+
+
+07:25
+
+
+20230829
+무기붙히는클래스 
+actor ->
+Cattachment
+CEquipment 에스폰하고  비긴이킵에 파티클등을재생하기위한이벤트바인드
+헤더->생성자(블프에서설정) <->데이터에셋클래스
+루트컴포넌트 
+
+20230830
+두액션밀리->스테이트컴->
+
+20230831
+에너미캐릭터 애님그래프 만들고
+메쉬위치 애님인스턴스 기본속도 다이나믹마티리얼 등세팅
+네임위젯 과 헬스위젯만들고
+그에맞는C++ 파일생성
+
+에너미에서 위젯가져오고 세팅밑설정 
+에너미비긴플레이에서 스테이터스컴포넌트의 커렌트와맥스헬스가져와서  변경값 검사후 세팅
+스테이터스컴포넌트에 계산용 체력 최대체력 값세팅
+
+20230901
+어타치먼트에서 오버랩엔드오버랩 딜리게이트로 두액션에 서받아서 밀리에서정의하고 두액션의 어래이가져오고 
+c에너미에서 테이크대미지해줌
+
+칼대미지25 
+에너미체력100
+히트때히트
+0이면데드출력하게만듦
+
+20230904
+
+히트때대미지깍인거 위젯적용
+히트시 히트리엑션 몽타쥬재생하고 노티파이로 재싱끝날시 아이들상태로만들어줌
+
+콜리젼콤보카운트추가
+노티파이스테이트로사용
+
+20230905
+createDefaultSubObject<T>("이름");
+컴포넌트와 오브젝트를 메모리에올릴수있는함수
+
+두엑션 이킵먼트 등을묶을
+오브젝트상속으로 CActionData_Spawned 만듦
+액션데이타에셋에있는 구조체 하고 스폰옮김
+비긴플레이에 리턴값  UCActionData_Spawned** 타입으로하나더붙힘
+하고액션데이타에 스폰드헤더넣음
+
+블프클래스 카메라쉐이크
+BP_Shake_OneHand1
+만들고
+
+C++에히트스탑만듦
+
+2030906
+카메라쉐이크 두액션밀리에 콤보카운트따라 적용
+뭔가 몽타쥬많이함
+원래만들어논거같은내용새로운거추가
+두액션파생 매잭볼클래스
+
+
+20230907
+점검 DoAction -> ActionData_Spawned -> ActionComponent
+몽타쥬노티파이에 비긴엑션 엔드액션꽃고
+매직볼의비긴엑션 재정의
+오브젝트타입의 CAim생성 매직볼관련
+
+
+"/Game/Player/Curve_Aim"
+
+
+20230908
+매지볼기반블프
+파티클템플릿 -> p매직볼
+
+임펙트 ->임펙트
+
+
+20230911
+매직볼발사프로젝타일 손에서나가는것처럼보이게하기
+매직볼에임버그수정
+
+
+20230912
+아수업없음 자소서관련 지원서
+20230913
+워프 머티리얼 몽타쥬 DA
+
+
+20230914
+함수혹은변수 -> 읽기용레퍼런스변수
+	     ->변경하는레퍼런스변수혹은함수
+이용하여 동기화하여 코드만들기가능
+
+워프이동
+
+APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld),0);
+CheckNullResult(controller,False);
+
+controller->GetHit
+if(!!Equipment)
+{
+DoAction->SetEquippedThis(Equipment->IsEquippedThis());
+}
+
+워프에이부분딜리게이트가아니라
+CheckFalse(*bEquippedThis);//읽기전용레퍼런스변수와 값변경쓰는다른변수들로 장착여부확인하게만듦
+
+20230915
+PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", AIModule });
+빌드.cs
+
+WarpPoint->SetVisibility(true);
+
+WarpPoint->SetWorldLocation(location + WarpPoint->GetUpVector() * 120.f);
+WarpPoint->SetWorldRotation(rotation);
+
+
+FVector normal = hitResult.ImpactNormal;
+float pitch = -UKismetMathLibrary::DegAtan2(normal.X, normal.Z);
+float roll = UKismetMathLibrary::DegAtan2(normal.Y, normal.Z);
+
+OutRotator = FRotator(pitch, 0, roll);
+
+
+블랙보드
+
+
+20230919
+AIController
+
+20230920
+다이나믹이벤트는 뉴펀션붙여야함
+
+20230921
+비헤이비어트리 서비스에서 웨잇 어프로치 액션모드로가게바꿈
+틱 0.25 서비스
+status컴포넌트 무브스피드전체바꿈 배열로받는걸로
+
+액션태스크만들어서 두액션실행해주고 인프로그레스 틱에서 2초후넘기게처리함
+
+순서조건 ->히티드(맞으면보스로전부초기화함), 웨잇,액션(2초후재행동) ,어프로치 
+
+스플라인패스컴포넌트만드는중
+
+UENUM(BlueprintType)
+enum class EBehaviorType : uint8
+{
+	Wait, Approach, Action, Patrol, Hitted,Avoid
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FBehaviorTypeChangedSignature, EBehaviorType, InPrevType, EBehaviorType, InNewType);
+
+
+20230922
+컨스트럭트 월드올릴때하고 드래그로끌을때도호출됨
+패트롤패스만듦기
+구성
+루프열닫
+경로두께변경
+표시텍스트
+위치
+
+ispaatro
+succecd
+
+walk run
+
+플레이어감지됨
+다시
+
+20230925
+12가망해 
+21로넘어감
+EQS(아이템과우선도로 판단하는거)도 네비메쉬안에만깔림
+
+매직맨은 패트롤안함
+EQS붙임 서클로 점수부여는 dot으로
+투포인트  from to 플레이어-쿼리어
+스코어constant :점수다같게만듦
+라디우스:범위
+스페이스비트윈:원간떨어진거리
+쿼리어: 기본은 소유자로들어감 하지만우리는 플레이어를 중심으로 eqs아이템을찍을거임
+
+UCEnvQueryContext로 플레이어중심에서싫행할꺼만들거
+에너미ai의쿼리->컨트롤러->비헤이비어컴프->플레이어키
+
+20230926
+
+에너미워프실행
+warp 플레이어여부검사해서 플레이어아니면데칼안나오게하기
+이름위젯키고끄는함수만듦
+죽으면5초후에 사라지는딜리게이트 cenemy<->ActionComponent 
+
+
+20231004
+유저헬스위젯 부모만들고 
+
+
+20231005
+이미지에셋에압축 :UserInterface2d 용량커지는대신안깨지고나오게함
+icon위젯과 가지는 group위젯
+플레이어에액션이벤트만들고 연결
+
+
+20231006
+icon->GRoup<->Player 딜리게이트로 누르기이벤트 바운드
+group에 icon번호ㄷ대로 이미지 버튼에넣기
+
+20231010
+스톰엑션의 어타치파티클스폰 위치및스케일세팅
+FVector RotateAngleAxis
+(
+    const float AngleDeg,
+    const FVector & Axis
+) const
+AngleDeg각도	회전할 각도(도)입니다.
+Axis중심선	회전할 축입니다.
+스톰엑션
+c기반블프
+어타치먼트 DA 캐릭터에넣고
+시간관련딜리게이트 2개
+
+블프수정용
+내부계산용
+활성화여부등등
+
+20231011
+ik(그뭐냐경사로에서발구브리는거하고 에임이동시위아래움직이는거)
+
+퓟컴포넌트만들고 애님인스턴스에넘길 데이터와 소켓과위치를이용한 라인트레이스만듦
+
+
+20231012
+ik + 프로젝트완료
+
+
+20231013
+08새프로젝트
+
+uv좌표:크기말고 비율로 쓰는거 0~1 
+
+버텍스 메쉬클래스( 정점으로 그리는거)
+
+왼아래부터 시계방향 4점 넓이 1제곱 사각형 
+
+
+ProcMesh->CreateMeshSection(0, Positions, Indices, Normals, UVs, Colors, TArray<FProcMeshTangent>(), true);//정점에면만들기 인덱스번호,정점,인덱스,노멀벡터,uv좌표,색,탄젠트벡터(기본값),충돌체여부 
+
+
+머티리얼함수만들어보고  머티리얼  파라미터로변환
+
+머티리얼 여러가지양산가능
+
+20231017
+머티리얼 
+메탈릭 러프니스
+투명 : 트렌슬루센시 :surface ForwardShading 
+램버트:음영
+
+
+20231018
+맵캡머티리얼(음영관련) 음수를양수로바꾸어 얼리얼좌표를 화면좌표(uv)로바꾸고 언리얼좌표에맞게 위아래방향만뒤집어줌
+버택스컬러:원래는정점계산용
+내적에서사인 :양수면 1 음수면 -1로 확실하게바꿔줌 문열기에서 앞에서여는지뒤에서여는지구분할때등사용
+투사이드사인:앞면이면1 뒷명이면 -1이나옴 기본1 보이는부분을안보이게하고 안보이는부분을보이게할수있음
+
+카메라씬캡쳐2D:씬캡쳐텍스쳐타겟의 랜더타겟으로 특정 화면텍스쳐저장후 머티리얼로 재이용가능
+
+20231019
+월드포지션옵셋(옵셋): 옵셋에값을주고 투사이드사인으로 뒤집어주고 똑같은머티리얼옵셋안준상태로 같은위치에넣으면 옵셋을 테두리로쓸수있음
+포스트프로세스볼륨:더트:볼륨안에카메라가있으면카메라를넣은걸로가림
+
+
+20231020
+프리넬:
+포스트프로세스외곽선따기흑백으로보이게하기그레이스케일만들기(흑백),외곽선따기(프리넬)
+
+디졸브:픽셀이서서이삭제되는거
+
+스캔:아직만드는중
+
+20231023
+머티리얼 파라미터컬렉션
+ **프로젝트세팅에서 뎁스스텐실킴
+위에거키면 임의적으로 커스텀뎁스스텐실이라는 옵션을 넣을수있음
+번호에따라 화면에보이는순서정하기가능
+이용하여 타임라인에따라 스캔만듦 
+
+
+머티리얼의 심플그라스윈드:풀같은거바람에흔들리는효과 파라미터: 강도,무게,추가적인 월드 포지션 오프셋
+바람 강도(스칼라)
+
+바람이 메시에 영향을 미치는 정도를 제어합니다.
+
+바람 무게(스칼라)
+
+이것은 메시의 정점이 바람에 얼마나 반응할지를 제어하는 ​​회색조 맵입니다.
+
+풍속(스칼라)
+
+이것은 바람의 속도를 제어합니다.
+
+추가WPO(벡터3)
+
+추가적인 월드 포지션 오프셋 네트워크나 기능을 받아들입니다.
+
+panner:일정주기로짤라서 이미지를줌
+
+
+
+20231024
+스미어 머티리얼:흩날리는효과
+랜드스케이프
+폴리지:엑터여러개올릴때사용 i키누르면 하나씩깔기가능
+시뮬레이션유지:
+라이트샤프트:라이트소스의 라이트샤프트오큘루젼누르면 빛산란그림자생김
+
+20231025
+라이팅맵:빛그림자같은맵을따로구워놈
+익스포넨셜하이트포그: 좀밝게만들어줌
+포인트라이트
+스태틱라이트:일반조명 라이팅맵빌드한상태만적용됨
+스테이셔너리라이트:고퀄그림자 움직이면적용안됨
+무버블라이트:움직이는조명 그림자표현가능
+
+메쉬디스턴스필드라이트:프로젝트세팅의디스턴스->라이팅->메시디스턴스필드생성체크해야사용가능
+ParallaxOcclusionMapping:실제론평명이지만입체로보이게만드는것
+
+20231026
+LOD: 화면거리별로 정점조절가능 최대LOD8개 최대퀄리티는0번
+LOD별화면크기와 감소셋팅가능 감소는 0번최대퀄리티기준으로줄임
+감소퍼센트최대10퍼 
+
+2.창->개발자튤->액터병합
+개별메쉬를 퀄리티떨어지고수정은불가능하지만 하나의메쉬로묶을수잇음
+
+3. HLOD: 계층형LOD  으로구획을나워서 관리함 프레임좋아짐
+
+4.FLipbook: 행렬있는2D애니메이션 애니메이션열과행 시간으로 조절가능함
+
+5.프로시져메쉬변경
+
+6.플러그인만들기
+동적라이브러리:필요에따라 프로세스등록해제하는것
+정적라이브러리:빌드할때(여기선얼리얼엔진키고끌때),핫리로드할때 등록됨 기본은정적라이브러리로만들어짐
+
+20231027
+얼리얼숨어있는거보려면깃허브에서풀버전받으면됨
+쉐어드포인터:내부카운터가있어서 카운터가0이되면메모리해제
+10월말까지자소서이력서
+1.플러그인만들기
+cpp->obj->exe
+	->lib(정적)->우리프로젝트영역->모듈간메모리공유가가능
+	->dll(동적)->별도로되있어 메모리공유안되있음
+StartupModule():에디터킬때
+ShutdownModule():프로젝트끌때
+
+만든플러그인은 에디터실행할때 마운팅목록에뜸
+
+유아이위치보기:에디터설정에서 익스텐션치고 체크후 재시작
+
+
+FToolBarExtensionDelegate
+BindLambda:영역지정 후바인드내용
+
+
+AddToolBarExtension:툴바에붙이기:붙일곳이름,붙일위치,할명령(딜리게이트로만듦),
+FToolBarExtensionDelegate:딜리게이트 크리에이트위치,딜리게이트이름
+
+ButtonCommand();:생성
+~ButtonCommand();:소멸
+
+#include "Framework/Commands/Commands.h"
+2.없음상속받고 토이쪽으로옮기고 버튼커맨드만들고 TCommands상속받기
+
+
+20231030
+toy->스타트업모듈딜리게이트->애드툴바함수 변수InToolBarBuilder->
+	Buttoncommand->부모의RegisterCommands()오버라이드(메크로로만듦)->toy의 애드툴바->toy의 스타트업모듈FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");//레벨에디터 모듈가져오기 
+	levelEditor.GetToolBarExtensibilityManager()->AddExtender(Extender);//에디터에 익스텐더붙이기
+	FButtonCommand::Register();//버튼커맨드의 레지스터실행(만들어논레지스터커맨드실행하는함수)
+	여기까지하면 화면에붙음 실행내용은별도
+
+->버튼커맨드에 생성자에 
+SpawnVertexCommand = MakeShareable(new FUICommandList());//만들기
+소멸자에
+if (SpawnVertexCommand.IsValid())//마이너스아닐때만
+		SpawnVertexCommand.Reset();//레퍼런스카운트깍기(쉐어드포인트 카운트)
+
+
+->레지스터커맨드로액션함수
+SpawnVertexCommand->MapAction(SpawnVertexButton, FExecuteAction::CreateRaw(this, &FButtonCommand::SpawnVertexButton_Pressed));//버튼커맨드액션만들기,위치,액션실행내용,
+
+->프레스시엑션하는함수
+void FButtonCommand::SpawnVertexButton_Pressed()
+{
+	UE_LOG(LogTemp, Error, TEXT("SpawnVertexButton_Pressed"));//로그찍기
+
+}
+
+toy.cpp Extender애드툴바(붙이기) 비어있던액션변경
+
+Extender->AddToolBarExtension("Compile",EExtensionHook::Before,nullptr,toolBarExtensionDelegate);//툴바에붙이기:붙일곳이름,붙일위치,액션명령,붙이는딜리게이트
+Extender->AddToolBarExtension("Compile",EExtensionHook::Before, FButtonCommand::Get().SpawnVertexCommand,toolBarExtensionDelegate);//툴바에붙이기:붙일곳이름,붙일위치,액션명령,붙이는딜리게이트
+
+buttoncommand
+#define LOCTEXT_NAMESPACE "" //다국어지원을위한네임스페이스 키없으면비워놈
+UI_COMMAND(CommandInfo,"LoadMesh","Load Mesh Data",EUserInterfaceActionType::Button,FInputChord());//저장위치(커맨드id타입),?,?,인터페이스타입,단축키조합키 없으면비워놈
+#undef LOCTEXT_NAMESPACE 
+
+
+토이의 아이콘을받아올 iconStyle.cpp 생성
+public:
+	static TSharedPtr<IconStyle> Get(); //포인트 생성과 겟할거
+	static void Shutdown();// 쉐어드포인트 레퍼런스감소시킬거
+private:
+static TSharedPtr<IconStyle> Instance; 쉐어드포인터로 아이콘스타일타입생성
+
+
+20231031 연관 iconstyle아이콘관련,buttonCommand액션이벤트딜리게이트관련, toy메인
+iconStyle.cpp부터
+
+SpawnVertexButton으로바꾸고마무리
+OpenViewerButton 도추가함 
+
+
+디버거카테고리.cpp
+
+
+20231101
+디버거카테고리.cpp
+히트리졀트로 플레이어,포워드엑터,디버그엑터(보통적 옵션켜놔서 임의로정할수있음) 이름,위치,전방벡터데이터 나오게함
+
+버튼을누르면정점을저장하는역할을하는 .CButtonActor
+버튼두개만들어서 하나는머티리얼바꾸는역할
+
+7시30분 한번터져서 에디터저장안되서 연속으로터짐 만들어서해결
+ACButtonActor::ACButtonActor()
+{
+	CHelpers::CreateSceneComponent(this, &Mesh, "Mesh");
+
+	UStaticMesh* meshAsset;
+	CHelpers::GetAsset<UStaticMesh>(&meshAsset, "StaticMesh'/Game/StaticMeshes/SM_Merged.SM_Merged'");
+
+	UMaterialInstanceConstant* materialAsset;
+	CHelpers::GetAsset<UMaterialInstanceConstant>(&materialAsset, "MaterialInstanceConstant'/Game/Materials/Surface/MAT_Shuffle.MAT_Shuffle'");
+
+	Mesh->SetStaticMesh(meshAsset);
+	Mesh->SetMaterial(0, materialAsset);
+}
+
+void ACButtonActor::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+
+#20231102
+버튼디테일패널이어서 
+
+머티리얼섞는버튼 
+저장하는버튼
+
+
+20231103
+bin으로저장 만듦(실제로저장됨)
+csv로저장 만듦
+
+바이너리파일읽어와서 정점하고인덱스개수출력까지함
+
+stream 하나씩받아서 보냄
+buffer 일정개수많큼끊어서 보냄
+ FArchive:읽고쓰기부모 이것만써서도할수있긴함
+FBufferArchive :<< 저장용
+
+연산자오버로딩예시
+	friend FArchive& operator<<(FArchive& InArchive, FVertexData& InData)
+	{
+		return InArchive
+			<< InData.Positions
+			<< InData.Normals
+			<< InData.Colors
+			<< InData.UVs
+			<< InData.Indices;
+	}//연산자오버로딩 <<(넘기기) FArchive(읽고쓰기 언리얼은(>>)없음)  FVertexData만든구조체  
+
+쓰는법
+FBufferArchive buffer; 이놈은 FArchive의자식임 /받기(저장)용 버퍼
+buffer << data; //버퍼에 데이터(만든구조체) 저장
+
+
+20231106
+
+CLoadMesh ->ButtonCommand.cpp
+스폰버텍스버튼누르고 바이너리클릭하면 라인충돌지점에 프록시메쉬생성하게만듦
+
+
+openviewer버튼클릭하면 디테일패널열게할  MeshViewer.CPP생성
+새로열릴디테일패널내용을당담할 CDetailAsset생성
+
+20231107
+toy->buttoncommand스폰+딜리게이트->
+버튼커맨드의OpenViewerButton_Pressed()->메쉬뷰어의OpenWindow->OpenWindow_Internal(같은건데그냥길어서분리해놓음)
+
+디테일패널디자인만들기(레이아웃)
+void FMeshViewer::OpenWindow_Internal(UObject* InAsset)
+//creat layout
+	TSharedRef<FTabManager::FLayout> layout = FTabManager::NewLayout("MeshViewer_Layout")
+		->AddArea
+	(
+		FTabManager::NewPrimaryArea()->SetOrientation(Orient_Vertical)
+		//Toolbar붙이기
+		->Split
+		(
+			FTabManager::NewStack()
+			->SetSizeCoefficient(0.1f)
+			->AddTab(GetToolbarTabId(),ETabState::OpenedTab) 
+		)
+		//Panel(대)붙이기
+		->Split
+		(
+			FTabManager::NewSplitter()->SetOrientation(Orient_Horizontal)
+		
+
+			//중viewport
+			->Split
+			(
+				FTabManager::NewStack()
+				->SetSizeCoefficient(0.75f)
+				->AddTab(ViewportTabID, ETabState::OpenedTab)
+				
+
+			)//end(중) viewport
+
+			//중RightPanel
+			->Split
+			(
+				FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
+				->SetSizeCoefficient(0.25f)
+				//(소)preview
+				->Split
+				(
+					FTabManager::NewStack()
+					->AddTab(PreviewTabID, ETabState::OpenedTab)
+				)
+				//(소)Detatils
+				->Split
+				(
+					FTabManager::NewStack()
+					->AddTab(DetailsTabID, ETabState::OpenedTab)
+				)
+
+			)//end(중)
+
+
+		)//END(대)
+
+		 
+	);//디테일패널에붙을 탭 붙이기 FTabManager::NewSplitter()영역나누기 FTabManager::NewStack()붙이기 ->Split만들기
+	
+
+	//open  slate window
+	FAssetEditorToolkit::InitAssetEditor
+	(
+		EToolkitMode::Standalone/*별도의 창으로*/,
+		TSharedPtr<IToolkitHost>(),
+		ToolkitName,
+		layout,
+		true/*검색창*/,
+		true/*툴바아이콘*/,
+		InAsset
+	);//실제창띄우는거    창정보,호스트?,툴바이름 , ui정보,검색창여부,툴바아이콘여부,
+
+
+
+viewport에서보여줄내용을당담할 SMeshViewer_Viewport생성
+클라이언트내용을당담할FMeshViewer_Viewport_Client생성
+
+20231108
+FMeshViewer_Viewport_Client부터시작
+조명, 카메라, 회전설정함
+
+
+FMeshViewer_Viewport에서
+씬만들고
+바닥과로봇 컴포넌트추가함
+
+
+meshviewer
+뷰포트
+프리뷰
+디테일패널만듦
+
+20231109
+우클릭시 나오는거 새로만들어서추가할거임
+토이에 CAsset생성함
+CAssetFactory생성
+
+언리얼끝~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+DX시작
+프로젝트생성 
+_Library 폴더를 깃있는곳에 붙여넣기
+imgui New가 더오래됨
+External 빼고 파일다삭제
+솔류션 64비트 32비트로변경
+옵션
+C++미리컴파일된헤더(precompileheaders) 이름 pch->Framework.h 로변경
+VC++디렉토리 인클루드디렉토리를 edit->macro->DH 인서트
+		라이브러리디렉토리  edit->macro->DL
+
+
+advanced -> characterset ->unicode
+c/c++ -> additional include diectiores ->./;../../_Libraries/;
+Librarian ->General -> additional Library directories ->../../_Libraries/;
+
+20231110
+Linker 외부라이브러리사용설정 거의수정안되는거 독립으로냅둠
+code Generation enableminimal rebuild-> no
+프레임워크 cpp 설정->미리컴파일된헤더-> 크리트
+
+
+UnitTest 프로젝트만들고
+파일붙여넣음
+VC++디렉토리 인클루드디렉토리를 edit->macro->DH 인서트
+		라이브러리디렉토리  edit->macro->DL
+
+C++->Additional InClude Directories -> ./;../../_Libraries/;../Framework/
+Linker->Additional Library Directories ->../../_Libraries/;
+Linker->System ->Subsystem window
+C++
+SDL Check->No
+Multiprocessorcompilation->Yes
+Precompied Header ->Precompiled Header ->Use
+
+7:27 ->$(SolutionDir)Debug_$(ProjectName)\
+0715
+
+20231113
+NDC좌표사용  x-1 1 y-1 1
+
+만든구조체내용 :일단 위치만만듦
+struct Vertex
+{
+	Vector3 Position;
+};
+버택스(정점)만들고 IA에태움 _Shaders만들고 Line.fx란파일추가
+
+VS(정점)만듬-> rs(점있기)건너뜀 ->ps(색깔)만듦
+
+FX컴파일러 넣고 단축키 컨트로+1로만들어버림
+ Line.fx
+struct VertexInput//실행(input)
+{
+	float4 Position : Position; //시멘틱키워드라는 변수로 앞의CPU변수를 뒤의GPU와 매칭시켜서 원래는 CPUGPU통신안되는걸 매칭시켜버림
+};
+
+}
+struct VertexOutput //저장할 곳 (return)
+{
+	float4 Position :  SV_Position;//SV: 정점사이픽셀로만들기
+};
+
+VertexOutput VS(VertexInput input) //리턴받을곳 , 실행할정점
+{
+	input.Position;
+	output.Position = input.Position; //
+
+
+	return output;리턴
+}
+
+float4 PS(VertexOutput input) : SV_Target //렌더타겟 ()
+{
+	return float4(0, 1, 0, 1); //픽쉘쉐이더 색깔 그린
+}
+
+technique11 T0 //학원에서따로만든 렌더드로우콜함수 실행넘버같은거
+{
+	pass P0//학원에서따로만든 드로우콜함수 실행넘버같은거
+	{
+		SetVertexShader(CompileShader(vs_5_0, VS())); //컴파일된쉐이더버택스쉐이더에붙이기 만들함수이름 vsblob ->DC->Vsset
+		SetPixelShader(CompileShader(ps_5_0, PS()));
+	}
+}
+
+
+20231114
+02_Pass fx부터
+
+
+임구이로여러파라미터만들어봄 
+static int pass = 0;
+	ImGui::InputInt("Pass",&pass);//임구이만들기
+	static Color color;
+	ImGui::ColorEdit3("Color", color);
+	shader->AsVector("BaseColor")->SetFloatVector(color);//베이스칼라찾아서 세팅
+	pass = Math::Clamp(pass, 0, 4);//패스값을 0~4로제한
+	shader->Draw(0,pass,2);//그리기  테크니크번호,쉐이더패스번호 ,그릴정점개수
+라인3개그리고 D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP써봄 안끊고이어서그리기 
+삼각형두개그려봄
+삼+삼 사각형그려봄
+와이어프레임 그려봄
+
+
+와이어프레임그릴 03_mesh.fx 만듦 패스1번
+RasterizerState FillMode_WireFrame //레스터라이즈만들기
+{
+    FillMode = WIREFRAME; //와이어프레임
+};
+
+ pass P1
+    {
+        SetRasterizerState(FillMode_WireFrame); //rs에셋하기  이렇게쉐이더로해도되고(GPU) cpp로해도됨(CPU)
+
+        SetVertexShader(CompileShader(vs_5_0, VS())); //컴파일된쉐이더버택스쉐이더에붙이기 만들함수이름 vsblob ->DC->Vsset
+        SetPixelShader(CompileShader(ps_5_0, PS()));
+    }
+
+메트릭스만들고 월드,뷰,프로젝션정의할쉐이더 04_Worldfx만듦
+matrix World;
+matrix View;
+matrix Projection;
+
+
+VertexOutput VS(VertexInput input)
+{
+	VertexOutput output;
+    	output.Position = mul(input.Position,World); //캐스트 곱하기
+	output.Position = mul(output.Position, View); 월드가곱해진에를 카메라뷰에곱함
+	output.Position = mul(output.Position, Projection);+ 프로젝션뷰도곱함
+
+	return output;
+}
+
+20231115
+
+월드에서스케일도조정해보기 
+D3DXMatrixTranslation(&S, position.x, position.y, position.z);//매트릭스이동 이동할것,x,y,z
+	D3DXMatrixScaling(&T, scale.x, scale.y, scale.z);//스케일조정 크기조정할것,x,y,z 써봄
+인덱스버퍼써보기
+
+
+04_Worldfx
+
+ uint VertexID : SV_VertexID; id매칭
+
+ float3 Color : Color; 시멘틱매칭
+
+  float3 colors[] = { float3(1, 0, 0), float3(0, 1, 0), float3(0, 0, 1), float3(0, 0, 0) }; 색 1234 빨초파검
+    
+    colors[input.VertexID];색넣기
+
+return float4(input.Color, 1);//스위즐링문법 검색 아웃풋에인풋넣기 쨌든결과는각정점에색들어감
+
+20231116
+
+ int src[10000];
+	int dst[10000];
+
+	for (int i = 0; i < 10000; i++)
+		dst[i] = src[i];//반복문복사 
+
+	memcpy(dst, src, sizeof(int) * 10000);//복사
+
+카메라관련클래스만듦 매트릭스 ,회전매트릭스 Camera
+카메라이동관련클래스만듦Freedom
+
+20231117
+
+카메라문자찍기
+텍스쳐샘플링 1.정점에UV좌표있어야함 2.텍스쳐쉐이더로전송
+텍스쳐할 TexturDemo만듦 텍스쳐받은06Texture.fx도
+
+랩(복사타일링), 미러(반전타일링) , 클램프(클램프) , 보더(넣을장소만넣고비움) 함
+
+20231121
+
+Terrain::Terrain(Shader* shader, wstring heightMapPath)
+	: shader(shader)
+{
+	heightMap = new Texture(heightMapPath);
+
+	CreateVertexData();
+	CreateIndexData();
+	CreateBuffer();
+
+	D3DXMatrixIdentity(&world);
+}
+
+Terrain::~Terrain()
+{
+	SafeDeleteArray(vertices);
+	SafeRelease(vertexBuffer);
+
+	SafeDeleteArray(indices);
+	SafeRelease(indexBuffer);
+
+	SafeDelete(heightMap);
+}
+
+void Terrain::Update()
+{
+	shader->AsMatrix("World")->SetMatrix(world);
+	shader->AsMatrix("View")->SetMatrix(Context::Get()->View());
+	shader->AsMatrix("Projection")->SetMatrix(Context::Get()->Projection());
+}
+
+void Terrain::Render()
+{
+	UINT stride = sizeof(VertexTerrain);
+	UINT offset = 0;
+
+	D3D::GetDC()->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);//ia셋버택스
+	D3D::GetDC()->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);//인덱스
+	D3D::GetDC()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);//그리는법
+
+	shader->DrawIndexed(0, pass, indexCount);//인덱스그리기
+}
+
+void Terrain::CreateVertexData()
+{
+	width = heightMap->GetWidth();
+	height = heightMap->GetHeight();
+
+	vector<Color> pixels;
+	heightMap->ReadPixel(&pixels);//하이트맵에있는 픽셀을 왼쪽하단부터읽어옴
+
+	vertexCount = width * height;
+	vertices = new VertexTerrain[vertexCount];
+
+	for (UINT y = 0; y < height; y++)
+	{
+		for (UINT x = 0; x < width; x++)
+		{
+			UINT index = width * y + x;
+			UINT reverse = width * (height - y - 1) + x;
+
+			vertices[index].Position.x = (float)x;
+			vertices[index].Position.y = pixels[reverse].r * 255.f / 10.f;
+			vertices[index].Position.z = (float)y;
+		}
+	}
+}
+
+void Terrain::CreateIndexData()
+{
+	indexCount = (width - 1) * (height - 1) * 6;
+	indices = new UINT[indexCount];
+
+	UINT index = 0;
+	for (UINT y = 0; y < height - 1; y++)
+	{
+		for (UINT x = 0; x < width - 1; x++)
+		{
+			indices[index + 0] = width * y + x;
+			indices[index + 1] = width * (y + 1) + x;
+			indices[index + 2] = width * y + (x + 1);
+			indices[index + 3] = width * y + (x + 1);
+			indices[index + 4] = width * (y + 1) + x;
+			indices[index + 5] = width * (y + 1) + (x + 1);
+
+			index += 6;
+		}
+	}
+}
+
+void Terrain::CreateNormalData()
+{
+	for (UINT i = 0; i < indexCount / 3; i++)
+	{
+		UINT index0 = indices[i * 3 + 0];
+		UINT index1 = indices[i * 3 + 1];
+		UINT index2 = indices[i * 3 + 2];
+
+		VertexTerrain v0 = vertices[index0];
+		VertexTerrain v1 = vertices[index1];
+		VertexTerrain v2 = vertices[index2];
+
+		Vector3 e1 = v1.Position - v0.Position;
+		Vector3 e2 = v2.Position - v0.Position;
+
+		Vector3 normal;
+		D3DXVec3Cross(&normal, &e1, &e2);
+		D3DXVec3Normalize(&normal, &normal);
+		
+		vertices[index0].Normal += normal;
+		vertices[index1].Normal += normal;
+		vertices[index2].Normal += normal;
+	}
+
+	for (UINT i = 0; i < vertexCount; i++)
+		D3DXVec3Normalize(&vertices[i].Normal, &vertices[i].Normal);
+}
+
+void Terrain::CreateBuffer()
+{
+	//Create VerexBuffer
+	{
+		D3D11_BUFFER_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
+		desc.ByteWidth = sizeof(VertexTerrain) * vertexCount;
+		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+		D3D11_SUBRESOURCE_DATA subResource = { 0 };
+		subResource.pSysMem = vertices;
+
+		Check(D3D::GetDevice()->CreateBuffer(&desc, &subResource, &vertexBuffer));
+	}
+
+	//Create IndexBuffer
+	{
+		D3D11_BUFFER_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
+		desc.ByteWidth = sizeof(UINT) * indexCount;
+		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+
+		D3D11_SUBRESOURCE_DATA subResource = { 0 };
+		subResource.pSysMem = indices;
+
+		Check(D3D::GetDevice()->CreateBuffer(&desc, &subResource, &indexBuffer));
+	}
+}
+
+20231122
+//버퍼을보내고다시태우는법
+	//updateSubResource Gpu 디폴트설정되있으야됨  좀느림 
+	//Map CPu            다이나믹설정되있어야됨 위보단빠름
+	//스태이징설정되있으면 둘다쓸수있지만 느려짐
+08
+09
+10
+그림자넣어봄
+그림넣어봄
+
+20231123 11까지 20231124
+Freedom 마우스에서 키보드로 그냥 변경함 if (Keyboard::Get()->Press('Z'))//위
+			rotation.x +=  rotationSpeed * Time::Delta();
+		else if (Keyboard::Get()->Press('X'))
+			rotation.x -=   rotationSpeed * Time::Delta();
+
+		if (Keyboard::Get()->Press('V'))//위
+			rotation.y += rotationSpeed * Time::Delta();
+		else if (Keyboard::Get()->Press('C'))
+			rotation.y -= rotationSpeed * Time::Delta();
+
+메쉬그릴거임 큐브, 쿼드, 플래인(지면), 실린더 스피어원기둥
+
+쉐이더 패딩안맞춰서 이미지안나왔어서 노멀과uv위치바꿔줌 position uv normal 순
+
+큐브,와실린더,스피어,클래스도만듦
+그려봄
+
+오브젝트 ->큐브맵클래스만듦
+
+
+
+20231127
+
+인클루드할클래스들
+ 버택스버퍼 ia버퍼 콘스탄트버퍼 만들 버퍼클래스 
+월드매트릭스만들 트랜스폰클래스 -여긴아직
+
+버퍼와트랜스폼 상속받고 랜더러클래스
+
+스켈레탈메쉬만들기 아직안함
+본 -매트릭스
+메쉬 -버퍼
+머티리얼
+
+
+
+쉐이더에인클루드할글로벌쉐이더받음
+
+void CubeMapDemo::Render()
+{
+	//WireFrame Test
+	{
+		static bool bWireFrame = false;
+		ImGui::Checkbox("WireFrame", &bWireFrame);
+
+		quad->Pass(bWireFrame == true ? 1 : 0);
+		plane->Pass(bWireFrame == true ? 1 : 0);
+		cube->Pass(bWireFrame == true ? 1 : 0);
+
+		for (int i = 0; i < 10; i++)
+		{
+		cylinders[i]->Pass(bWireFrame == true ? 1 : 0);
+		spheres[i]->Pass(bWireFrame == true ? 1 : 0);
+		}
+	}
+	
+
+
+	sky->Render(); //이거보다위에딴거그리면 스카이가덮어버림
+	quad->Render();
+	plane->Render();
+	cube->Render();
+
+	
+	for (int i = 0; i < 10; i++)
+	{
+		cylinders[i]->Render();//실린더개수
+		spheres[i]->Render();//스피어개수
+	}
+
+
+	cubeMap->Render();
+}
+
+20231128
+쉐이더에인클루드할글로벌쉐이더받음
+쉐이더에 매트릭스정보하고 테크니크등 글로벌의매크로로바꿈
+
+월드매트릭스만들 트랜스폰클래스
+
+쉐이더로 정보 틱마다넘겨줄 perFrame클래스만들기
+
+쉐이더는 패딩16바이트맞추지않으면 밑에있는거가져옴 넣는타입이16으로안나눠지면 패딩넣어서 맞춰야함
+
+20231129
+float 4byte
+matrix 16byte
+plane 16byte(float a,b,c,d)
+구조체에서8바이트안의남는거는자동으로채워주긴함 1234  pppp
+					    #### ####
+쉐이더는 구조체 패딩16바이트맞추지않으면 밑에있는거가져옴 넣는타입이16으로안나눠지면 패딩넣어서 맞춰야함
+
+
+Renderer클래스만들고 메시에상속함
+메시사용하고잇는 큐브맵과 큐브맵스카이수정 (부모함수로교체)
+프레임워크끝
+
+스켈레탈메쉬
+모델에디터프로젝트생성 
+미리컴파일해더에 Assimp 에있는거추가
+
+
+20231130
+FBX 읽고 메쉬저장하는 convert 클래스
+탱크fbx읽는 export클래스
+본이나메쉬쓸때 구조체모아놓을 Types.h
+버티시즈데이터담당하고 타입스헤더구조체에들어갈 model클래스
+
+ //aiProcess_Triangulate:폴리곤으로가져오기 aiProcess_ConvertToLeftHanded:왼손좌표계 aiProcess_GenUVCoords:uv없으면알아서계산해서넣기 aiProcess_GenNormals:노멀없으면알아서계산해넣기 aiProcess_CalcTangentSpace:탄젠트벡터없으면 알아서넣기
+	 scene = importer->ReadFile(String::ToString(this->file),aiProcess_ConvertToLeftHanded | aiProcess_Triangulate | aiProcess_GenUVCoords | aiProcess_GenNormals | aiProcess_CalcTangentSpace); //ToString:w스트링 스트링으로바꿔주는애  파일읽기 파일,
+	
+20231201
+model의 friend 함수3개 (분할)
+Types의 asmeshpart 부터
+파일저장하고
+
+본메쉬메쉬파트저장받을 modelmesh 생성
+
+20231204
+modelmesh 
+model의 friend함수 생성은 모델에서할거임
+ ModelMesh
+//*mesh의 mesh data를 저장받을 클래스
+	//vertexbuffer indexbuffer생성
+	//모든 Bone의 Matrix를 boneBuffer(cBuffer)로 복사
+	//루트본의위치 Transform객체 생성(root bone)
+
+
+
+//-----------------------------------------------------------------------------
+// ModelMeshPart
+// @실제 Draw Primitive call(shader->DrawIndexed();
+// @머티리얼 단위로 구분됨
+// @자신이 받은 부위만 그릴예정
+//-----------------------------------------------------------------------------
+
+20231205
+modle
+modelRender
+14 model fx 
+만듦
+
+
+
+
+20231206
+
+탱크나오는거확인하고
+exportfile(읽고저장) -> modelDemo(띄우기)
+카츄진fbx 도읽어봄
+
+fbx 구성요소: bone,mesh,Mat(없을수도있고있을수도있고) 
+
+Type.h 에 머티리얼정보받을 구조체만들고
+Converter클래스에 저장읽기만듦
+xml사용위해 헤더임포트
+
+
+렌더임구이관련
+static int index = -1;
+	ImGui::InputInt("BoneIndex", &index);//임구이만들기 이름,조작변수
+	
+	if(index >= model->MeshCount())
+		index =-1;//최대제한넘어가면-1로
+	
+	static float yaw = 0.f;
+	ImGui::SliderFloat("Yaw", &yaw, -180, 180);
+		transform->RotationDegree(0, yaw, 0);//회전임구이
+
+	//전체메쉬
+	//-1이면다보이고 0이면루트본부터마지막본까지보여줌
+	if (index < 0)
+	{
+		for (ModelMesh* mesh : model->meshes)
+		{
+			mesh->SetTransform(transform);
+			mesh->Render();
+		}
+	}
+	else
+	{
+		ModelMesh* mesh = model->MeshByIndex(index);
+		mesh->SetTransform(transform);
+		mesh->Render();
+	}
+
+
+
+20231207
+
+XML 쓰기 이름하고 원본 기타등등씀
+내장텍스트있는거구분해서만듦
+모델에 xml인클루드
+
+ <Name>watchtower</Name>
+        <DiffuseFile>Wood_Tower_Col.jpg</DiffuseFile>
+        <SpecularFile>Wood_Tower_Col.jpg</SpecularFile>
+        <NormalFile>Wood_Tower_Nor.jpg</NormalFile>
+        <Ambient R="0" G="0" B="0" A="1"/>
+        <Diffuse R="0.39738566" G="0.39738566" B="0.39738566" A="1"/>
+        <Specular R="1" G="1" B="1" A="0"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+
+
+20231208
+xml에서 머티리얼가져와서 쉐이더넘기고 해서 적용
+없으면 수동으로머티리얼파일가져와서 직접입력해서 적용 옵션있음
+conv->ExportMaterial(L"Tank/Tank",false);//머티리얼파일만들기 경로/이름,중복다시가져오기여부
+
+애니메이션
+
+
+
+20231213
+modelAnimator클래스 
+매트릭스포인터포인터에 2차원속에 2차원포인터로만들어 3차원배열을만듦
+텍스쳐 쉐이더로보내는거 만드는중
+
+
+20231214
+
+애니메이션 쉐이더로 버퍼와 srv따서보냄
+애니메이션출력
+ 
+
+20231215
+애니메이션재생시끊키는거보간 현재하고 다음사이를러프로보간함
+애니메이션변경시바로바뀌는걸 선형보간하여 좀서서히바뀌게바꿈
+
+템플릿함수는무조건인라인으로만들어야함
+
+20231219
+15번쉐이더부터
+블렌드모드 만들어서 블렌드모드시 바를이용해 서서이 자세섞이게함 
+
+
+cpu쓰레드에대해알아보자
+그냥1~100찍는반복문
+	for (int i = 0; i < 100; i++)
+		printf("Loop 1:%d\n", i+1);
+	printf("Loop1complate");
+
+쓰레드사용 호출시 동시에실행되어 숫자가뒤죽박죽나옴 대신 abort함수로 종료시실행내역안쓰면 경고문뜸
+void ThreadDemo::MultiThread()
+{
+	thread t1(bind(&ThreadDemo::Loop1, this));
+	thread t2(bind(&ThreadDemo::Loop2, this));
+}
+
+t2.join();
+쓰레드 join();  들어올때쓰레드내에 함수하나가종료될때까지기다려줌
+ ->메인혹은 다른스레드에서 특정시점값을 get set할때씀
+->종료해도 삭제됬는지모름
+->이용하여 종료시점지정가능
+
+detach()
+->메인함수 종료시점에 관심  x
+->종료시같이사라짐
+
+
+thread관련             mutex m;
+mutex 
+lock();//다른쓰레드가들어오는걸막음
+unlock();//끝나면풀어줌
+
+lock_guard<mutex> lock(m); //락과언락자동호출 함수끝나면이니셜라이즈에서언락함
+
+20231220
+c++->buffer->SRV->store->UAV->resource-> subresource                            shader(buffer)
+
+inputData != nullptr ? &subResource : nullptr 널이면넣고 
+
+rawbuffer compute shader써보기 outputbuffer 기능
+srv(input) uav(output)  만듦
+
+이거쉐이더 16번 
+ByteAddressBuffer Input; //srv타고온에
+RWByteAddressBuffer Output; //uav로넘길애
+
+그룹아이디관련
+https://www.google.com/search?q=SV_GroupThreadID&sca_esv=592476218&tbm=isch&source=lnms&sa=X&sqi=2&ved=2ahUKEwi7-oaa6J2DAxXDdXAKHaruBm0Q_AUoAnoECAIQBA&biw=1920&bih=953&dpr=1#imgrc=I7TINFizuzcJBM
+   uint3 GroupID : SV_GroupID;//대그룹 에서 지정한 소그룹에서 자신의소그룹 번호 
+    uint3 GroupThreadID : SV_GroupThreadID;// 소그룹내에서 의 자신의위치
+    uint3 DispatchThreadID : SV_DispatchThreadID;//대그룹에서부터 떨어진 자신의 위치
+    uint GroupIndex : SV_GroupIndex;//대그룹에서 부터 자신의위치까지 x+Y 한위치 
+
+
+20231221
+shader->Dispatch(0, 0, 1, 1, 1); //compute shader 동작함수 테크니크번호 , 패스번호 ,x우 ,y하 ,z장
+
+conpute shader, rawbuffer, TextureBuffer :실시간으로 충돌처리후바뀌는 쉐이더동작같은거쓸때 씀 인풋아웃풋으로 cpu와주고받기가능
+//ID3D11Texture2D 바로안보내는이유 :텍스쳐에포함된 해상도에따른 밉매핑 정보는 쉐이더로 보내면안됨 
+
+D3D11_TEXTURE2D_DESC srcDesc;
+	src->GetDesc(&srcDesc);
+
+	width = srcDesc.Width;
+	height = srcDesc.Height;
+	arraySize = srcDesc.ArraySize;
+	format = srcDesc.Format;
+
+	D3D11_TEXTURE2D_DESC desc;
+	ZeroMemory(&desc, sizeof(D3D11_TEXTURE2D_DESC));
+	desc.Width = width;
+	desc.Height = height;
+	desc.ArraySize = arraySize;
+	desc.Format = format;
+	desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	desc.MipLevels = 1;
+	desc.SampleDesc.Count = 1;
+
+	ID3D11Texture2D* texture = nullptr;
+	Check(D3D::GetDevice()->CreateTexture2D(&desc, nullptr, &texture));
+
+20231222
+//실행할때잠깐 콜솔모드로바꿔주는역할
+//#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+
+[numthreads(32, 32, 1)] //디스패치 대그룹에서 나눈 소그룹수(직접지정) 다곱해서 최대1024까지사용가능
+
+texture버퍼로 이미지띄워보고 c++로쉐이더색실시간으로바꿔봄
+texturebuffer끝
+
+  shader15.//SetAnimationWorld(World, input);//두번하면트오세됨
+20231226
+
+수정필요
+buffer.cpp 기입안함
+애니메이션 블렌드끝냈고
+충돌체 박스같은거 넣어줌
+
+20231227
+buffer.cpp 수정
+인스턴싱사용하여 5000개의박스를 출력해도 프레임이안떨어지게만들어봄
+
+
+20231228
+큐브맵 cpp삭제
+메쉬 도 인스턴싱해보았다
+
+모델인스턴싱하는중
+
+
+20231229
+모델인스턴싱중
+
+색바꾸고 돌리기함
+
+300개정도메쉬띄워도 프레임400정도나옴
+

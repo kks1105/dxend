@@ -33,6 +33,7 @@ void ModelDemo::Update()
 	ImGui::SliderFloat3("LightDirection", LightDirection, -1, 1);
 	shader->AsVector("LightDirection")->SetFloatVector(LightDirection);
 
+	//Instance Test
 	static UINT index = 0;
 	ImGui::SliderInt("InstanceIndex", (int*)&index, 0, airplane->TransformsCount() - 1);
 	Transform* transform = airplane->GetTransform(index);
@@ -41,7 +42,16 @@ void ModelDemo::Update()
 	transform->RotationDegree(&R);
 	ImGui::SliderFloat3("Rotatio", R, -180, +180);
 	transform->RotationDegree(R);
+
+	airplane->SetColor(1, Color(1, 0, 0, 1));
+	airplane->SetColor(3, Color(0, 0, 1, 1));
 	airplane->UpdateTransforms();
+
+	for (UINT i = 0; i < tower->TransformsCount(); i++)
+		tower->SetColor(i, Color(0, 0, 0, 1));
+
+	tower->SetColor(index, Color(0, 1, 0, 1));
+	tower->UpdateTransforms();
 
 	if (tank != nullptr)
 	{
